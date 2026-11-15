@@ -58,11 +58,24 @@ jobs:
           test -n "$APP"
           file "$APP/tails-adventure"
           plutil -lint "$APP/Info.plist"
-          ls "$APP" "$APP/assets" | head -40
+          /usr/libexec/PlistBuddy -c "Print :CFBundleIdentifier" "$APP/Info.plist"
+
+          # Make sure game data and icons are inside the bundle (the CMake post-build copy did not do it)
+          if [ ! -d "$APP/assets" ]; then
+            echo "assets missing from bundle, copying them in"
+            cp -R ta/assets "$APP/assets"
+          fi
+          cp -f ta/external/SDL_GameControllerDB/gamecontrollerdb.txt "$APP/assets/"
+          cp -f ta/res/ios/*.png "$APP/"
+
+          ls "$APP"
+          ls "$APP/assets" | head -40
           test -f "$APP/assets/gamecontrollerdb.txt"
+          test -d "$APP/assets/maps"
           mkdir Payload
           cp -R "$APP" Payload/
           zip -qry tails-adventure-ios.ipa Payload
+          ls -la tails-adventure-ios.ipa
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
