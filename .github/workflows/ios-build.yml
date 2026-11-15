@@ -1,0 +1,71 @@
+name: Build iOS IPA
+
+# Put this file in your own GitHub repo at .github/workflows/ios-build.yml, next to tails-adventure-ios.patch
+# (repo root). Run it from the Actions tab -> "Build iOS IPA" -> "Run workflow".
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Upstream tag or branch to build (the patch is made for v0.3.2-1)"
+        default: "v0.3.2-1"
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - name: Checkout this repository (contains the patch)
+        uses: actions/checkout@v4
+
+      - name: Fetch upstream source with submodules
+        env:
+          REF: ${{ inputs.ref }}
+        run: |
+          git clone --branch "$REF" --depth 1 --recurse-submodules --shallow-submodules \
+            https://github.com/mechakotik/tails-adventure ta
+
+      - name: Apply iOS patch
+        working-directory: ta
+        run: |
+          git apply --check ../tails-adventure-ios.patch
+          git apply ../tails-adventure-ios.patch
+
+      - name: Show toolchain
+        run: |
+          xcodebuild -version
+          cmake --version
+
+      - name: Configure
+        run: |
+          cmake -S ta -B build -G Xcode \
+            -DCMAKE_SYSTEM_NAME=iOS \
+            -DCMAKE_OSX_SYSROOT=iphoneos \
+            -DCMAKE_OSX_ARCHITECTURES=arm64 \
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=15.0 \
+            -DTA_LTO=OFF \
+            -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED=NO \
+            -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=NO \
+            -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY=""
+
+      - name: Build
+        run: cmake --build build --config Release --target tails-adventure -j 4
+
+      - name: Package unsigned IPA
+        run: |
+          APP=$(find build -type d -name "tails-adventure.app" -path "*Release-iphoneos*" | head -1)
+          echo "App bundle: $APP"
+          test -n "$APP"
+          file "$APP/tails-adventure"
+          plutil -lint "$APP/Info.plist"
+          ls "$APP" "$APP/assets" | head -40
+          test -f "$APP/assets/gamecontrollerdb.txt"
+          mkdir Payload
+          cp -R "$APP" Payload/
+          zip -qry tails-adventure-ios.ipa Payload
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: tails-adventure-ios-unsigned
+          path: tails-adventure-ios.ipa
