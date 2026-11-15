@@ -2,26 +2,16 @@
   Tails Adventure Remake
 </h1>
 
-<div align="center">
+Tails Adventure is a Sonic the Hedgehog spin-off game, released for Game Gear and featuring Tails in a solo role. As opposed to other Sonic titles with fast-paced gameplay, Tails Adventure is a Metroidvania-styled game with emphasis on exploration, collecting items and backtracking. It's a unique "hidden gem" of the series that couldn't get attention it deserves due to low popularity of Game Gear.
 
-[![GitHub release (with filter)](https://img.shields.io/github/v/release/mechakotik/tails-adventure?style=flat&label=latest&color=&logo=Git&logoColor=white)](https://github.com/mechakotik/tails-adventure/releases)
-[![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dcom.mechakotik.tailsadventure%26gl%3DUS%26hl%3Den%26l%3Dinstalls%26m%3D%24totalinstalls&logo=google-play&color=)](https://play.google.com/store/apps/details?id=com.mechakotik.tailsadventure)
-[![GitHub all releases](https://img.shields.io/github/downloads/mechakotik/tails-adventure/total?color=&logo=github)](https://github.com/mechakotik/tails-adventure/releases)
-[![Telegram](https://img.shields.io/badge/Telegram-blue.svg?style=flat&logo=Telegram&logoColor=white)](https://t.me/tailsadventure)
-
-</div>
-
-Tails Adventure is a Sonic the Hedgehog spin-off game, released for Game Gear and featuring Tails in a solo role. Opposed to other Sonic titles with fast-paced gameplay, Tails Adventure is a metroidvania game with emphasis on exploration, collecting items and backtracking. It's a unique "hidden gem" of the series that couldn't get attention it deserves due to low popularity of Game Gear.
-
-This project aims to bring Tails Adventure experience to modern platforms, pushing away Game Gear limitations and implementing some improvements:
+This release remakes the original Game Gear for iPhone devices, based on the original remake for Android/Linux/Windows by Mechakotik. Here's what changed in the remake:
 - **Balance changes:** rebalanced gameplay, enemies and bosses, to make the game more challenging
 - **QoL improvements:** responsive controls, pause menu, item hotswap, tired flying
 - **Display support:** runs in any resolution and refresh rate, displays subpixels, allows adjusting internal resolution to "zoom out the camera"
-- **Input support:** keyboard, gamepad and touchscreen input, rumble and analog stick support, customizable mappings
+- **Input support:** keyboard, gamepad & touchscreen input, rumble and analog stick support, customizable mappings
 - **Save system:** automatic saving, convenient data select menu in Sonic 3 style
-- **Mod support:** simple mod system to embed custom assets, easily modifiable formats like TMX and TOML
 
-Also, it was made from the ground up in C++ without using any game engines to be less bloated, maximize performance and portability. Effort is put into making the framework as lightweight as possible, able to run on weak hardware.
+The original remake was made in C++ without using any game engines to be "less bloated, maximize performance and portability". Effort was put by the creator into making the framework as lightweight as possible, able to run on weaker hardware capabilities.
 
 ## Completion status
 
@@ -35,34 +25,12 @@ The game is fully playable and can be completed 100%. However, a few non-essenti
 
 ## Get it
 
-Binary releases for Windows, Android and Linux (amd64) are available at [Releases](https://github.com/mechakotik/tails-adventure/releases). If your platform is not supported or binary release is not working properly, you may build Tails Adventure Remake from source (see [BUILDING](docs/BUILDING.md)).
+The original binary releases for Windows, Android and Linux (amd64) are available at [Releases](https://github.com/mechakotik/tails-adventure/releases). This fork ONLY contains the iOS version of the remake.
 
-## Default controls
+## iOS Testing
 
-Controls can be remapped with Options -> Controls -> Map keyboard / Map gamepad.
+This port has been so far ONLY tested on an iPhone 16 base model, with 128GB memory and iOS27 installed. Previous models and versions of the OS should work, but we reccomend that everything is up to date.
 
-| Action | Keyboard | Gamepad |
-| ------ | -------- | ------- |
-| Move | Arrow keys | Left stick or D-Pad |
-| Jump (A) | Z | A |
-| Use item (B) | C | B |
-| Previous item | A | LB |
-| Next item | D | RB |
-| Start | Enter | Start |
-| Toggle fullscreen | Right Alt + Enter | - |
+The minimum requirements should (estimately) be any iPhone installed with iOS11-12 and onward. The port is a 64-bit IPA, so it won't work on 32-bit devices.
 
-## Modding
-
-Tails Adventure Remake has mod support, which allows you to replace any file in `assets` directory with a custom one. See [MODDING](docs/MODDING.md) for modding guide and info on how game's asset formats work.
-
-## Contributing
-
-Contributions are welcome! Just be sure to follow these rules:
-
-- Always open pull requests to `develop` branch: all the development happens there and gets merged to `main` when it's stable enough.
-- Follow project's code style (use clang-format to format the code automatically)
-- Usage of AI is allowed, but please review and test code yourself before submitting PR
-- Write clear descriptions of changes that you are making.
-
-To get started, you may search for TODO in source code.
-
+The IPA file is also **unsigned.** You WILL need to sign the game yourself, either via a paid Apple Developer account ($99/year), a free Apple Developer account (only 3 sideloaded apps at once and weekly refresh), or sideloading apps (TrollStore, KSign, SideStore, SideInstaller etc.)
