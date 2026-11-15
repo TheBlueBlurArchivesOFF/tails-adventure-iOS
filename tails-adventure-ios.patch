@@ -1,0 +1,512 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ff8768a..68d9588 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -6,6 +6,10 @@ option(TA_UNIX_INSTALL "Install on Unix filesystem" OFF)
+ option(TA_LTO "Enable link time optimization" ON)
+ option(TA_SANITIZE "Build with sanitizers" OFF)
+ option(TA_CLANG_TIDY "Run clang-tidy alongside with building" OFF)
++option(TA_FORCE_TOUCH "Compile touchscreen code path on any platform (for testing)" OFF)
++set(TA_IOS_BUNDLE_ID "local.tailsadventure.ios" CACHE STRING "iOS bundle identifier")
++set(TA_IOS_VERSION "0.3.2" CACHE STRING "iOS app version")
++set(TA_IOS_BUILD "1" CACHE STRING "iOS app build number")
+ 
+ set(CMAKE_CXX_STANDARD 23)
+ 
+@@ -29,6 +33,10 @@ if(ANDROID)
+     add_compile_definitions(_LIBCPP_HAS_NO_OFF_T_FUNCTIONS)
+ endif()
+ 
++if(TA_FORCE_TOUCH)
++    add_compile_definitions(TA_FORCE_TOUCH)
++endif()
++
+ if(TA_SANITIZE)
+     add_compile_options(-fsanitize=address,leak,undefined)
+     add_link_options(-fsanitize=address,leak,undefined)
+@@ -128,10 +136,37 @@ file(GLOB_RECURSE TA_SOURCES src/*.cpp)
+ 
+ if(ANDROID)
+     add_library(tails-adventure SHARED ${TA_SOURCES})
++elseif(IOS)
++    add_executable(tails-adventure MACOSX_BUNDLE ${TA_SOURCES})
+ else()
+     add_executable(tails-adventure ${TA_SOURCES} ${WIN32_RESOURCES})
+ endif()
+ 
++if(IOS)
++    set(TA_IOS_EXECUTABLE tails-adventure)
++    set(TA_IOS_MIN_VERSION "${CMAKE_OSX_DEPLOYMENT_TARGET}")
++    configure_file(res/ios/Info.plist.in ${CMAKE_BINARY_DIR}/Info.plist @ONLY)
++    set_target_properties(tails-adventure PROPERTIES
++        MACOSX_BUNDLE_INFO_PLIST ${CMAKE_BINARY_DIR}/Info.plist
++        XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER ${TA_IOS_BUNDLE_ID}
++        XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2"
++        XCODE_ATTRIBUTE_ENABLE_BITCODE NO
++    )
++
++    # game data and app icons are plain files inside the bundle
++    set(TA_BUNDLE_DIR "$<TARGET_BUNDLE_DIR:tails-adventure>")
++    file(GLOB TA_IOS_ICONS res/ios/*.png)
++    add_custom_command(TARGET tails-adventure POST_BUILD
++        COMMAND ${CMAKE_COMMAND} -E remove_directory "${TA_BUNDLE_DIR}/assets"
++        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/assets" "${TA_BUNDLE_DIR}/assets"
++        COMMAND ${CMAKE_COMMAND} -E copy
++            "${CMAKE_SOURCE_DIR}/external/SDL_GameControllerDB/gamecontrollerdb.txt" "${TA_BUNDLE_DIR}/assets/"
++        COMMAND ${CMAKE_COMMAND} -E copy ${TA_IOS_ICONS} "${TA_BUNDLE_DIR}/"
++        COMMENT "Copying assets into app bundle"
++        VERBATIM
++    )
++endif()
++
+ target_compile_options(tails-adventure PRIVATE -ffast-math)
+ 
+ if(TA_CLANG_TIDY)
+@@ -190,17 +225,19 @@ if(WIN32)
+     target_link_options(tails-adventure PRIVATE -mwindows)
+ endif()
+ 
+-if(TA_UNIX_INSTALL)
+-    target_compile_options(tails-adventure PRIVATE -DTA_UNIX_INSTALL)
+-    install(TARGETS tails-adventure DESTINATION /usr/local/bin)
+-    install(DIRECTORY assets/ DESTINATION /usr/local/share/tails-adventure)
+-    install(FILES external/SDL_GameControllerDB/gamecontrollerdb.txt DESTINATION /usr/local/share/tails-adventure)
+-    install(FILES res/tails-adventure.png DESTINATION /usr/local/share/icons)
+-    if(NOT APPLE)
+-        install(FILES res/tails-adventure.desktop DESTINATION /usr/local/share/applications)
++if(NOT IOS)
++    if(TA_UNIX_INSTALL)
++        target_compile_options(tails-adventure PRIVATE -DTA_UNIX_INSTALL)
++        install(TARGETS tails-adventure DESTINATION /usr/local/bin)
++        install(DIRECTORY assets/ DESTINATION /usr/local/share/tails-adventure)
++        install(FILES external/SDL_GameControllerDB/gamecontrollerdb.txt DESTINATION /usr/local/share/tails-adventure)
++        install(FILES res/tails-adventure.png DESTINATION /usr/local/share/icons)
++        if(NOT APPLE)
++            install(FILES res/tails-adventure.desktop DESTINATION /usr/local/share/applications)
++        endif()
++    else()
++        install(TARGETS tails-adventure DESTINATION ${CMAKE_BINARY_DIR}/output)
++        install(DIRECTORY assets DESTINATION ${CMAKE_BINARY_DIR}/output)
++        install(FILES external/SDL_GameControllerDB/gamecontrollerdb.txt DESTINATION ${CMAKE_BINARY_DIR}/output/assets)
+     endif()
+-else()
+-    install(TARGETS tails-adventure DESTINATION ${CMAKE_BINARY_DIR}/output)
+-    install(DIRECTORY assets DESTINATION ${CMAKE_BINARY_DIR}/output)
+-    install(FILES external/SDL_GameControllerDB/gamecontrollerdb.txt DESTINATION ${CMAKE_BINARY_DIR}/output/assets)
+ endif()
+diff --git a/res/ios/AppIcon60x60@2x.png b/res/ios/AppIcon60x60@2x.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..a69182012451ba47c8ed2375cfd4c8cb349b0be6
+GIT binary patch
+literal 777
+zcmeAS@N?(olHy`uVBq!ia0y~yV5k6L4kiW$hHY#MTNxObE_k{)hE&A8y}L2*a)5+;
+zA$w`YQobA;7GV`-Zxyv;8!ob+5LQr8u{sdEL^()R%*tp|qiJJj<MIYZ&ASQ7zy2Lo
+zzq#DicK^j(+2=1-?Ydqz=ca(nKATnboBoF7*<1Qo?~+{oVbl5P-%rn<lUwgwwcxwj
+z-QE8TO^#d;aCYY51u-TpK5ekx=kwF|=gXchlx=f;J>mGQ^77}WW81gy-S6@Kv>;d&
+zT)BX=bKkD@#`Dj=wx9W5bNl=6zppVp&x)QuBVPA#=g-vlOs==;qh^$dhh^ILWppf5
+zY-^K{N`f%9Jiq8UOMm%W{=<E{K0ke|9)H?4mcRe>+tmyAF>0J$-@b6({^i_i>d(Kv
+zw_b#-4{E^X67Q?2J49doZT79qSS}xTReNJeYKqQTZJpT6qciNfCWiH(+jvA<C-Yy0
+zm5+72U0v|~k5gjy&)yoe^l$n1$=BpF>)v+2jD|b1@Zcvyn`8~!$tzaxHrScF?hxbB
+z)*fY;2cQlql(W57Q>n8#vbJge?=y=xew)1H=T>w@AKy*hIPd4oJeT+L`upTd|6Qq8
+z%c|P;s(-rw=_kpyzwcuPt6Ka96@9z^IeU+m9I~sEbh+^N$ZGCs|9k#hDZt&=)^<cX
+zBkuhxefjS5Kjz=aTk`m4ZDF9?%bQiPdH(BnM|{z<u)r2}d)b9}4{x}6<-D4&_OaPf
+zo_(r!yPlo;Fzr)3J91L^wtfHItv`!qxtCjFnBwvKNd2X~3KL57MS8X_@c13s9({C|
+h%thpc!NdELJ1(n3E#Zo07y|<XgQu&X%Q~loCIHcWWitQ(
+
+literal 0
+HcmV?d00001
+
+diff --git a/res/ios/AppIcon60x60@3x.png b/res/ios/AppIcon60x60@3x.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..b7c181828fe3f153fed45e9f95be5d86ff4f8f19
+GIT binary patch
+literal 988
+zcmeAS@N?(olHy`uVBq!ia0y~yVAuk}983%h44c+ZOl4qTUhL`O7*Y}U_U^{4kXVtn
+zhqg%z6B3`hM!a0Ig)<`Zn4i8vxI)u{);L$4dV!oRTTEJW-L$#aJ8>(PdCjOwTgz{D
+z-2R8n*JpEPD(?AxAZh*@xAQ-jTOU1iS%0o}Z2iT^(vvc#cJB`#p8a&y@#XfXOuct)
+zdUAG0%%8#ylkNHb6ix`{o6<a|Xo1X=Da=n5mdj|c?_8ZP#k`RFYRuc$&705NJ%8LW
+z{brrF-}^M)tII6vEuR|QmA|m9DYq3xljTzf%M+UH*0FQH-d=P4^|htf_J7yEon!X2
+z)QWl5_vK#|7cD+~OmWfSS0>@fA57d{f1a{<a-{RpPj1nt8q@iTPBj)`aY$zK_GLxu
+z!t^AP@8sRdxfbyD*530^@7DG1emZM$;Qri=hB`SuT*o!|SH;#}+|`%MdYcRCj8l$&
+zmI277Zn(Vav)0jW$M~<44*$=aTT=H-I)DDV_-nJ4>1AFjJfSI-e4G2}|1Rz0+wi&P
+zUEztMC&kGk!durKeU^27p18hE?ys*|S7Ua@KmUAYSGc8*u6l9wHqjhycwizq=*CLx
+z=*se_J##)hO#EwqHSOgY&3~!ySL?^~#c!L!d>#=2NO}VJitZk~J*jx>(KTUT8<&25
+zW!mNIeQ$M$-?MEw+Bd>ZXkvPGfy|RvCohLpx@BEUS@(I@!ASLcX0v^NcHjM15U}p$
+zk6#bg#C&^u^6%g5S^11}j^d2SzwgtuW&7>w-s@<W@=5KT`DNOXa}i7Sgg;jj)?}Xt
+ziffEOULf;iSH5sfS=gMDk?XJjy!(IC=2zamhHtC?*8JV|XIp=N|M&GTYaSRLJ9uzT
+za|Etn0>#@wzq^koES)@ga*=QPiAu@kySrcRk-i)<P4!0D2L~^-xCJHM=DE9$D|(-8
+zj4Zynf90IjQ@Ni7@!1q(CMnCO3ClCvXU#gb*?)7J{^oU?pI9v3bG`7Z-l?5<qM)8Z
+ZdqT&&O*V(v7#J8BJYD@<);T3K0RZ5M-#h>S
+
+literal 0
+HcmV?d00001
+
+diff --git a/res/ios/AppIcon76x76@2x~ipad.png b/res/ios/AppIcon76x76@2x~ipad.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..ef7364720ce7090c4234abb6a8a198deb5c219bd
+GIT binary patch
+literal 913
+zcmeAS@N?(olHy`uVBq!ia0y~yV3+~I983%h4AU2EFJoX}j_`DG45^5Fd)F{eI8eml
+zV*V7Ri9r`Oc7zz{W$FYjHIa>M2yd7$!Gm#i!6}c486KXU+)>i2MAk5IsVrw+c;&zC
+z$^MCJS64@+9s3r;d-U@EnVzR}_S?Oc+w@Crer?gr*uNjn9A5vW=$pmAQ{t=RtAG0T
+zfBUrZ*Lxn$L=O&UCkdfL69n2?3{+Ya6?r%dOD3P4(`0$)?oX?IytmEn{<P~gzo*Uj
+zuxwlH{?99a-u=)CQ;DqEV%49%M2Sh4+wJ!<o6Yu3)hgNDCFXcG{UO(i$a>4jZnem@
+zs`GD0ne1D6X4R#Y6Z|1|A)5fU-b;B`h(WuzdrA7ktJ=;x9zVa|lzo4D`oaC@qBp6U
+z%#l@#R&Q=CP@jHsr`<$^lTnR1qH^!+&8Xck^Uv?8+tibP_~mi)z08vmU#{Rft*HG-
+zb<SGX`r~?c``-wo=>z*d(W9frGQ}XmD)%nuo#v0v3XZ?uRlP9yyS&;<L)(|n!}R2O
+zyf1GL_~C*UYG5ZknLOA3uX*&c{G)3;(lu<h|D8W&-NesW!^=R$#cq*wDWCbIlPXbh
+zQ}<OV3dCF1#k#l}?5%!)(`CyOHq@;)+UvdDFD&fh(f5lie%svLdGGE|E4%N<UyJW$
+zzGT}cialVeXTMnzSNn6O++|_?iC+INR4dFq$0F{3el7OsG*EHbXaDK#uHAPsB-#$|
+z;eGwDJa6rnt@ZJ-N9}(mZG0gsP`~=xt&&~8R~gL5OhVB3P>Sc1jL@6@F_)ulBfIr-
+zS^qtMuSKr@_i=w1MxuiRyMpZIrR*PAig%Q_gg?X@2!T;GQ@O&@MceJBUUr|mfkiz2
+l%l8A<eqxOc386>&wE-Pzy7N4E85kHCJYD@<);T3K0RS7ZcbWhI
+
+literal 0
+HcmV?d00001
+
+diff --git a/res/ios/AppIcon83.5x83.5@2x~ipad.png b/res/ios/AppIcon83.5x83.5@2x~ipad.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..e4063548d6bdb71f567a3a6d7a675e619b2c48cc
+GIT binary patch
+literal 967
+zcmeAS@N?(olHy`uVBq!ia0y~yU|0^q983%h48Kcm?`B|N?(=kU45^5Fd)F{eI8eml
+zV*V7Ri9r`Oc7zz{W$FYjEwS3fu%1CtaUxUL!zmsfCQFtaVO`4`$`!`QI_YxbqA%}l
+zKdOhVsrLVCn*2L0XpdyQf7HQmw=ZX0edS)&v$(tDq}+`3^&fM-Swvqt7ry_p>G!u6
+zYv()gPq^B-#xJE*X|-_V+!L={!qhieO#}&*eAsAU)u;aU`tsLbCg0wcxl3(Zv*$mJ
+z<Zphr%jdFd)CR=8Mkq$sZ}p=7@?nD~?2`Z3vdw1uR<)EYtKRB0&uiZKP41J@A2L7C
+zo$0fE+Wxj{lV)cBf3VZ&^4BPsoyf+3o#8g)aQKnQ-%iQ=Q?d5_KjZI*pWlC|n7@tO
+zlW_0T*{DswS#O?gy7s93X20Gi<%+dvK0r2Y){@y9@AUmXd^X6=CUV*QJ0F){KRD~p
+zv6Fcv_1uf%%krOv?KxbNx>#{NW<WrVS@A`;qr#%*&LYX*b7g&Q@!xlomJ7YJXMV^u
+zR;~35|Lc5QJNeZ6168;kvDEU<^Uy5^&qh9-9=AKx?T$eB!{2La4j#-#33g;hYn^>q
+zZk)M4f3oMN9o0|EbCX|cUW$MIR^0#Pdt9Dfu|?he&xYLpd$w(=_xwNk;>-01=he(C
+z`^OnGf8Ax}KQ&*KB7$$mFPVQG63NK6LF4_4!m|&e`uqQ_(&1jxuNz+X+9+)1qT}f+
+zWftPm6mo0fle1P;XR0OI_WpQs?cwf>+!pgs&p#Rc)i@{Ko#6XRDLVUd=KJE`xDpN6
+za<BVM9lFy`f0^9<{=%Ene`m{jZ1?%}uKVBQ{|~XJ(U4zaE^CZj*RN^pP=7nsvc?`)
+z^!0v7DRKSt<%`DWTmPEhq)AE5PZfL@Wh{nEedOF1@+=V@Ev&h!N(>AP44$rjF6*2U
+FngHm}=^Fq5
+
+literal 0
+HcmV?d00001
+
+diff --git a/res/ios/Info.plist.in b/res/ios/Info.plist.in
+new file mode 100644
+index 0000000..c281517
+--- /dev/null
++++ b/res/ios/Info.plist.in
+@@ -0,0 +1,49 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict>
++    <key>CFBundleDevelopmentRegion</key><string>en</string>
++    <key>CFBundleExecutable</key><string>@TA_IOS_EXECUTABLE@</string>
++    <key>CFBundleIdentifier</key><string>@TA_IOS_BUNDLE_ID@</string>
++    <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
++    <key>CFBundleName</key><string>Tails Adventure</string>
++    <key>CFBundleDisplayName</key><string>Tails Adventure</string>
++    <key>CFBundlePackageType</key><string>APPL</string>
++    <key>CFBundleShortVersionString</key><string>@TA_IOS_VERSION@</string>
++    <key>CFBundleVersion</key><string>@TA_IOS_BUILD@</string>
++    <key>LSRequiresIPhoneOS</key><true/>
++    <key>MinimumOSVersion</key><string>@TA_IOS_MIN_VERSION@</string>
++    <key>UIDeviceFamily</key><array><integer>1</integer><integer>2</integer></array>
++    <key>UIRequiredDeviceCapabilities</key><array><string>arm64</string></array>
++    <key>UILaunchScreen</key><dict/>
++    <key>UIRequiresFullScreen</key><true/>
++    <key>UIStatusBarHidden</key><true/>
++    <key>UIViewControllerBasedStatusBarAppearance</key><false/>
++    <key>UISupportedInterfaceOrientations</key>
++    <array>
++        <string>UIInterfaceOrientationLandscapeLeft</string>
++        <string>UIInterfaceOrientationLandscapeRight</string>
++    </array>
++    <key>UISupportedInterfaceOrientations~ipad</key>
++    <array>
++        <string>UIInterfaceOrientationLandscapeLeft</string>
++        <string>UIInterfaceOrientationLandscapeRight</string>
++    </array>
++    <key>UIFileSharingEnabled</key><true/>
++    <key>LSSupportsOpeningDocumentsInPlace</key><true/>
++    <key>CFBundleIcons</key>
++    <dict>
++        <key>CFBundlePrimaryIcon</key>
++        <dict>
++            <key>CFBundleIconFiles</key><array><string>AppIcon60x60</string></array>
++        </dict>
++    </dict>
++    <key>CFBundleIcons~ipad</key>
++    <dict>
++        <key>CFBundlePrimaryIcon</key>
++        <dict>
++            <key>CFBundleIconFiles</key><array><string>AppIcon60x60</string><string>AppIcon76x76</string><string>AppIcon83.5x83.5</string></array>
++        </dict>
++    </dict>
++</dict>
++</plist>
+diff --git a/src/engine/controller.cpp b/src/engine/controller.cpp
+index eafb3ac..e1095be 100644
+--- a/src/engine/controller.cpp
++++ b/src/engine/controller.cpp
+@@ -1,8 +1,9 @@
+ #include "controller.h"
++#include "platform.h"
+ #include <cmath>
+ 
+ void TA_Controller::load() {
+-#ifdef __ANDROID__
++#ifdef TA_TOUCH_PLATFORM
+     onscreen.load();
+ #endif
+ 
+@@ -10,7 +11,7 @@ void TA_Controller::load() {
+ }
+ 
+ void TA_Controller::update() {
+-#ifdef __ANDROID__
++#ifdef TA_TOUCH_PLATFORM
+     onscreen.update();
+ #endif
+ 
+@@ -23,7 +24,7 @@ void TA_Controller::update() {
+ }
+ 
+ void TA_Controller::draw() {
+-#ifdef __ANDROID__
++#ifdef TA_TOUCH_PLATFORM
+     if(isTouchscreen()) {
+         onscreen.draw();
+     }
+@@ -66,7 +67,7 @@ bool TA_Controller::isJustPressed(TA_FunctionButton button) {
+ }
+ 
+ bool TA_Controller::isTouchscreen() {
+-#ifdef __ANDROID__
++#ifdef TA_TOUCH_PLATFORM
+     return !(TA::gamepad::connected() && TA::gamepad::oncePressed());
+ #else
+     return false;
+diff --git a/src/engine/filesystem.cpp b/src/engine/filesystem.cpp
+index 216fc5b..8d6dbff 100644
+--- a/src/engine/filesystem.cpp
++++ b/src/engine/filesystem.cpp
+@@ -1,7 +1,9 @@
+ #include "filesystem.h"
+ #include <filesystem>
++#include "SDL3/SDL_filesystem.h"
+ #include "SDL3/SDL_iostream.h"
+ #include "error.h"
++#include "platform.h"
+ 
+ #ifdef __APPLE__
+ #include "mach-o/dyld.h"
+@@ -57,6 +59,9 @@ std::string TA::filesystem::readAsset(std::filesystem::path path) {
+ std::filesystem::path TA::filesystem::getAssetsPath() {
+ #ifdef __ANDROID__
+     return "";
++#elifdef SDL_PLATFORM_IOS
++    // assets are copied into the app bundle, SDL_GetBasePath() points to its resource directory
++    return std::filesystem::path(SDL_GetBasePath()) / "assets";
+ #elifdef TA_UNIX_INSTALL
+     return "/usr/local/share/tails-adventure";
+ #else
+@@ -84,6 +89,15 @@ std::filesystem::path TA::filesystem::getExecutableDirectory() {
+ #endif
+ }
+ 
++std::filesystem::path TA::filesystem::getUserDataPath() {
++#ifdef SDL_PLATFORM_IOS
++    // app bundle is read-only on iOS, config has to live in the app's data directory
++    return std::filesystem::path(SDL_GetPrefPath("mechakotik", "tails-adventure"));
++#else
++    return getExecutableDirectory();
++#endif
++}
++
+ void TA::filesystem::writeFile(std::filesystem::path path, std::string value) {
+     std::string pathStr = path.string();
+     SDL_IOStream* file = SDL_IOFromFile(pathStr.c_str(), "wb");
+diff --git a/src/engine/filesystem.h b/src/engine/filesystem.h
+index 12d7eea..6b37495 100644
+--- a/src/engine/filesystem.h
++++ b/src/engine/filesystem.h
+@@ -10,6 +10,7 @@ namespace TA::filesystem {
+     std::string readAsset(std::filesystem::path path);
+     std::filesystem::path getAssetsPath();
+     std::filesystem::path getExecutableDirectory();
++    std::filesystem::path getUserDataPath();
+     void writeFile(std::filesystem::path path, std::string value);
+ }
+ 
+diff --git a/src/engine/game.cpp b/src/engine/game.cpp
+index 8eb4c8a..d917823 100644
+--- a/src/engine/game.cpp
++++ b/src/engine/game.cpp
+@@ -3,6 +3,7 @@
+ #include "error.h"
+ #include "gamepad.h"
+ #include "keyboard.h"
++#include "platform.h"
+ #include "resource_manager.h"
+ #include "save.h"
+ #include "sound.h"
+@@ -33,6 +34,10 @@ void TA_Game::initSDL() {
+ }
+ 
+ void TA_Game::createWindow() {
++#ifdef SDL_PLATFORM_IOS
++    SDL_SetHint(SDL_HINT_ORIENTATIONS, "LandscapeLeft LandscapeRight");
++    SDL_SetHint(SDL_HINT_IOS_HIDE_HOME_INDICATOR, "1");
++#endif
+     TA::window = SDL_CreateWindow("Tails Adventure", defaultWindowWidth, defaultWindowHeight, SDL_WINDOW_FULLSCREEN);
+     if(TA::window == nullptr) {
+         TA::handleSDLError("%s", "failed to create window");
+diff --git a/src/engine/gamepad.cpp b/src/engine/gamepad.cpp
+index c8d452c..529e220 100644
+--- a/src/engine/gamepad.cpp
++++ b/src/engine/gamepad.cpp
+@@ -1,6 +1,8 @@
+ #include "gamepad.h"
+ #include <array>
+ #include <string>
++#include "filesystem.h"
++#include "platform.h"
+ #include "save.h"
+ 
+ namespace TA::gamepad {
+@@ -45,7 +47,11 @@ void TA::gamepad::init(int index) {
+         isConnected = true;
+     }
+ 
++#ifdef SDL_PLATFORM_IOS
++    SDL_AddGamepadMappingsFromFile((TA::filesystem::getAssetsPath() / "gamecontrollerdb.txt").string().c_str());
++#else
+     SDL_AddGamepadMappingsFromFile("gamecontrollerdb.txt");
++#endif
+     updateMapping();
+ }
+ 
+diff --git a/src/engine/platform.h b/src/engine/platform.h
+new file mode 100644
+index 0000000..1f39dd4
+--- /dev/null
++++ b/src/engine/platform.h
+@@ -0,0 +1,12 @@
++#ifndef TA_PLATFORM_H
++#define TA_PLATFORM_H
++
++#include "SDL3/SDL_platform_defines.h"
++
++// Platforms where the game is controlled with a touchscreen by default (on-screen buttons, "touch to start" etc.)
++// TA_FORCE_TOUCH may be defined at configure time to compile the touch code path on any platform (for testing).
++#if defined(__ANDROID__) || defined(SDL_PLATFORM_IOS) || defined(TA_FORCE_TOUCH)
++#define TA_TOUCH_PLATFORM
++#endif
++
++#endif // TA_PLATFORM_H
+diff --git a/src/engine/resource_manager.cpp b/src/engine/resource_manager.cpp
+index 87d3c19..ca4ad40 100644
+--- a/src/engine/resource_manager.cpp
++++ b/src/engine/resource_manager.cpp
+@@ -3,6 +3,7 @@
+ #include "SDL3_image/SDL_image.h"
+ #include "error.h"
+ #include "filesystem.h"
++#include "platform.h"
+ #include "sound.h"
+ #include "tools.h"
+ 
+@@ -46,6 +47,15 @@ void TA::resmgr::loadMods() {
+     }
+     std::filesystem::path modsPath = SDL_GetAndroidExternalStoragePath();
+     modsPath /= "mods";
++#elifdef SDL_PLATFORM_IOS
++    // visible in the Files app (Documents folder is shared via UIFileSharingEnabled)
++    const char* documents = SDL_GetUserFolder(SDL_FOLDER_DOCUMENTS);
++    if(documents == nullptr) {
++        return;
++    }
++    std::filesystem::path modsPath = std::filesystem::path(documents) / "mods";
++    std::error_code ec;
++    std::filesystem::create_directories(modsPath, ec);
+ #elifdef TA_UNIX_INSTALL
+     std::filesystem::path modsPath = "~/.local/share/tails-adventure/mods";
+ #else
+diff --git a/src/engine/save.cpp b/src/engine/save.cpp
+index 9be420f..e803dea 100644
+--- a/src/engine/save.cpp
++++ b/src/engine/save.cpp
+@@ -4,6 +4,7 @@
+ #include <sstream>
+ #include "error.h"
+ #include "filesystem.h"
++#include "platform.h"
+ 
+ namespace TA {
+     namespace save {
+@@ -61,6 +62,8 @@ std::filesystem::path TA::save::getSaveFileName() {
+         return std::filesystem::path(path) / "config";
+     }
+     return std::filesystem::path(SDL_GetAndroidInternalStoragePath()) / "config";
++#elifdef SDL_PLATFORM_IOS
++    return TA::filesystem::getUserDataPath() / "config";
+ #elifdef TA_UNIX_INSTALL
+     std::filesystem::path path = std::filesystem::path(getenv("HOME")) / ".local/share/tails-adventure";
+     std::filesystem::create_directories(path);
+diff --git a/src/ui/credits_screen.h b/src/ui/credits_screen.h
+index 85bbc0b..c9a090f 100644
+--- a/src/ui/credits_screen.h
++++ b/src/ui/credits_screen.h
+@@ -1,6 +1,7 @@
+ #ifndef TA_CREDITS_SCREEN_H
+ #define TA_CREDITS_SCREEN_H
+ 
++#include <array>
+ #include "font.h"
+ #include "screen.h"
+ #include "sound.h"
+diff --git a/src/ui/options_section.cpp b/src/ui/options_section.cpp
+index acf0f64..dd0ed68 100644
+--- a/src/ui/options_section.cpp
++++ b/src/ui/options_section.cpp
+@@ -8,6 +8,7 @@
+ #include "SDL3/SDL_scancode.h"
+ #include "gamepad.h"
+ #include "keyboard.h"
++#include "platform.h"
+ #include "resource_manager.h"
+ #include "save.h"
+ #include "tools.h"
+@@ -337,13 +338,13 @@ void TA_OptionsSection::load() {
+     options[0].push_back(std::make_unique<TA_PixelAROption>());
+     options[0].push_back(std::make_unique<TA_ScaleModeOption>());
+     options[0].push_back(std::make_unique<TA_VSyncOption>());
+-#ifndef __ANDROID__
++#ifndef TA_TOUCH_PLATFORM
+     options[0].push_back(std::make_unique<TA_WindowSizeOption>());
+ #endif
+ 
+     options[1].push_back(std::make_unique<TA_MapKeyboardOption>());
+     options[1].push_back(std::make_unique<TA_MapGamepadOption>());
+-#ifdef __ANDROID__
++#ifdef TA_TOUCH_PLATFORM
+     options[1].push_back(std::make_unique<TA_HideOnscreenOption>());
+ #endif
+     options[1].push_back(std::make_unique<TA_RumbleOption>());
+diff --git a/src/ui/title_screen.cpp b/src/ui/title_screen.cpp
+index 68c21b3..15f5164 100644
+--- a/src/ui/title_screen.cpp
++++ b/src/ui/title_screen.cpp
+@@ -1,11 +1,12 @@
+ #include "title_screen.h"
+ #include <cmath>
++#include "platform.h"
+ #include "tools.h"
+ 
+ void TA_TitleScreen::init() {
+     backgroundSprite.load("title_screen/title_screen.png");
+ 
+-#ifdef __ANDROID__
++#ifdef TA_TOUCH_PLATFORM
+     pressStartSprite.load("title_screen/touch_to_start.png");
+ #else
+     pressStartSprite.load("title_screen/press_start.png");
