@@ -5,11 +5,11 @@
 Tails Adventure is a Sonic the Hedgehog spin-off game, released for the Sega Game Gear and featuring Tails in a solo role. As opposed to other Sonic titles with fast-paced gameplay, Tails Adventure is a Metroidvania-styled game with emphasis on exploration, collecting items and backtracking. It's a unique "hidden gem" of the series that couldn't get attention it deserves due to low popularity of Game Gear.
 
 This release remakes the original Game Gear for iPhone devices, based on the original remake for Windows/Linux/Android by Mechakotik. Here's what changed in the remake:
-- **Balance changes:** rebalanced gameplay, enemies and bosses, to make the game more challenging
-- **QoL improvements:** responsive controls, pause menu, item hotswap, tired flying
-- **Display support:** runs in any resolution and refresh rate, displays subpixels, allows adjusting internal resolution to "zoom out the camera"
-- **Input support:** keyboard, gamepad & touchscreen input, rumble and analog stick support, customizable mappings
-- **Save system:** automatic saving, convenient data select menu in Sonic 3 style
+- **Balance changes:** Featuring rebalanced gameplay, enemies and bosses, to make the game more challenging.
+- **QoL improvements:** Includes more responsive controls, a pause menu, item hotswap (changing any items you already own without going to Tails' House) etc.
+- **Display support:** The game runs in any resolution and refresh rate, displays subpixels, and allows for adjusting internal resolution to "zoom out the camera".
+- **Input support:** Features support for keyboards, gamepads/controllers & touchscreen inputs, as well as support for rumble and an analog stick.
+- **Main Menu & Save System:** Booting up the game presents a Sonic 3-styled main menu with a data select, settings, and random tiny quotes that change every time you enter.
 
 ## Completion status
 
