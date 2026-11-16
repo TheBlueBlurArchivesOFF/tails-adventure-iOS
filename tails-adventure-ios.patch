@@ -94,6 +94,259 @@ index ff8768a..68d9588 100644
 -    install(DIRECTORY assets DESTINATION ${CMAKE_BINARY_DIR}/output)
 -    install(FILES external/SDL_GameControllerDB/gamecontrollerdb.txt DESTINATION ${CMAKE_BINARY_DIR}/output/assets)
  endif()
+diff --git a/assets/achievements.toml b/assets/achievements.toml
+new file mode 100644
+index 0000000..7ed7468
+--- /dev/null
++++ b/assets/achievements.toml
+@@ -0,0 +1,230 @@
++[[achievement]]
++id = "item_8"
++name = "Miles' Prower Glove"
++description = "Get the Super Glove."
++
++[[achievement]]
++id = "item_24"
++name = "Mining the Depths"
++description = "Get the Mine."
++
++[[achievement]]
++id = "item_13"
++name = "Hot Time In The Old Town"
++description = "Get the Napalm Bomb."
++
++[[achievement]]
++id = "item_22"
++name = "Surface-To-Air Surprise!"
++description = "Get the Anti-Air Missile."
++
++[[achievement]]
++id = "item_23"
++name = "I'm Afraid Of Lightning!"
++description = "Get the Spark."
++
++[[achievement]]
++id = "item_14"
++name = "Triple Trouble"
++description = "Get the Triple Bomb."
++
++[[achievement]]
++id = "item_12"
++name = "Light Tank, Heavy Weapons"
++description = "Get the Proton Torpedo."
++
++[[achievement]]
++id = "pm4_nohit"
++name = "Polly Mountain I - These Skies Are Mine"
++description = "Survive Speedy's sky chase without taking a hit."
++
++[[achievement]]
++id = "lr_noweapons"
++name = "Lake Rocky - Pacifist Plunge"
++description = "Complete Lake Rocky (standard exit) with no weapons aboard the Sea Fox."
++
++[[achievement]]
++id = "ci_norefill"
++name = "Cavern Island - Five Poison Rings"
++description = "Reach the boss room without collecting Rings to refill HP. (If Continuing from title screen, leave and re-enter level first)"
++
++[[achievement]]
++id = "cf_lazy"
++name = "Caron Forest - Lazy Way Out"
++description = "Who has time to walk all the way back to the entrance? After collecting all items in Caron Forest, find another way out."
++
++[[achievement]]
++id = "gi_broken"
++name = "Green Island - Broken Monitor"
++description = "Collect all items in Green Island in a single visit without refilling your health. Be careful which items you pick up first!"
++
++[[achievement]]
++id = "hero"
++name = "A Hero's Heart"
++description = "Defeat the Battle Kukku Army and save Cocoa Island!"
++
++[[achievement]]
++id = "tough"
++name = "Tough-As-Nails Tails"
++description = "Clear the game without having collected the Red, Green, Blue, White and Yellow Chaos Emeralds."
++
++[[achievement]]
++id = "perfect"
++name = "Perfect Collection"
++description = "Achieve a 100% collection ratio by finding all items in the game!"
++
++[[achievement]]
++id = "item_6"
++name = "Go, Mini-Me!"
++description = "Get the Remote Robot."
++
++[[achievement]]
++id = "item_7"
++name = "Gotta Go Fast"
++description = "Get the Speed Boots."
++
++[[achievement]]
++id = "item_18"
++name = "Play Them Golden Oldies"
++description = "Get the Radio."
++
++[[achievement]]
++id = "item_19"
++name = "Whack-A-Bird"
++description = "Get the Hammer."
++
++[[achievement]]
++id = "item_2"
++name = "Trigger Happy"
++description = "Get the Remote Bomb."
++
++[[achievement]]
++id = "item_16"
++name = "Watch for Rolling Rocks"
++description = "Get the Helmet."
++
++[[achievement]]
++id = "item_10"
++name = "Knuckles Punch!"
++description = "Get Knuckles."
++
++[[achievement]]
++id = "item_11"
++name = "Way Past Cool!"
++description = "Get Sonic."
++
++[[achievement]]
++id = "item_20"
++name = "Go The Extra Miles"
++description = "Get the Extra Speed."
++
++[[achievement]]
++id = "item_5"
++name = "Virtual Boy's Latest Tech"
++description = "Get the Night Vision Goggles."
++
++[[achievement]]
++id = "item_17"
++name = "You Are Not In Kanto"
++description = "Get the Item Radar."
++
++[[achievement]]
++id = "item_9"
++name = "Gold Digger"
++description = "Get Fang."
++
++[[achievement]]
++id = "item_1"
++name = "Bigger is Always Better"
++description = "Get the Large Bomb."
++
++[[achievement]]
++id = "item_21"
++name = "Who Needs a Super Star?"
++description = "Get the Extra Armour."
++
++[[achievement]]
++id = "item_25"
++name = "I Wanna Fly High"
++description = "Get the Rocket Booster."
++
++[[achievement]]
++id = "item_3"
++name = "Tails Found TM30!"
++description = "Get the Teleport Device."
++
++[[achievement]]
++id = "item_15"
++name = "Tool of All Trades"
++description = "Get the Wrench."
++
++[[achievement]]
++id = "item_31"
++name = "Red Power Rush!"
++description = "Get the Red Chaos Emerald."
++
++[[achievement]]
++id = "item_29"
++name = "Green Power Rush!"
++description = "Get the Green Chaos Emerald."
++
++[[achievement]]
++id = "item_33"
++name = "Purple Power Rush!"
++description = "Get the Purple Chaos Emerald."
++
++[[achievement]]
++id = "item_32"
++name = "Blue Power Rush!"
++description = "Get the Blue Chaos Emerald."
++
++[[achievement]]
++id = "lc_noaa"
++name = "Lake Crystal - Sitting Duck"
++description = "Make your way up Lake Crystal without equipping the Anti-Air Missile on board the Sea Fox."
++
++[[achievement]]
++id = "pv_nonv"
++name = "Polly Mountain II - Treasure In The Depths"
++description = "Locate the Item Radar in Polly Mountain II without using the Night Vision."
++
++[[achievement]]
++id = "cc_nohit"
++name = "Coco Island - I'm Not Your Experiment"
++description = "Eliminate Dr. Fukurokov without Tails getting hurt."
++
++[[achievement]]
++id = "bf1_nohit"
++name = "Battle Fortress I - Grueling Gauntlet"
++description = "Ascend the heavily-armed vertical shaft in Battle Fortress I without suffering damage."
++
++[[achievement]]
++id = "bf2_nowrench"
++name = "Battle Fortress II - Inept Mechanic"
++description = "Complete Battle Fortress II without equipping the Wrench. Achievement triggers upon reaching the boss room."
++
++[[achievement]]
++id = "item_30"
++name = "White Power Rush!"
++description = "Get the White Chaos Emerald."
++
++[[achievement]]
++id = "item_34"
++name = "Yellow Power Rush!"
++description = "Get the Yellow Chaos Emerald."
++
++[[achievement]]
++id = "emeralds"
++name = "By Your Powers Combined..."
++description = "Achieve full power using the 6 Chaos Emeralds!"
++
++[[achievement]]
++id = "pf3_nohit"
++name = "Poloy Forest - Curb-Stomp Battle"
++description = "Lay waste to the Kukku Walker without taking damage."
++
++[[achievement]]
++id = "vt_backdoor"
++name = "Volcanic Tunnel - Back Door Bomber"
++description = "Trash Mecha Golem #5 through the back door."
++
+diff --git a/assets/data_select/achievements.png b/assets/data_select/achievements.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..2fa50938cbdba61044ae648744d5dc51b9828e41
+GIT binary patch
+literal 391
+zcmV;20eJq2P)<h;3K|Lk000e1NJLTq001xm001}$1^@s6yHR`U0003_Nkl<Zc-rll
+z;gN$N5QQI(6{H1Pu!Xd6t<ZwCq=i^QTCfFM*!$%T#|RP^bV%OL<cA>eKK89)FaQJ%
+zM-Kqc$FoWC_n$jDG#&&X009U<096<OB1@Zp#^z>dAp(3oK(C#^+Cepbo?q8wz}n$Y
+z{1FlB7=NDAEtDgC@14ss@D89>WOV>*hfR^IHA0Kb^GjVjYJgl3d+)^HFR6heHKDav
+zm9tQ6*GtzzwX;x6Xer<GC~-6kH9n`zz{dh?6>Kv_oDy0ZqB~Q34G7*!@K%DKQ34PE
+z>T8v0nwS9s5P$##AV9mvX)rDhSw#Hb=tfEPhwZWFy|%4+Q**|~z!yHc@gGD8wf2_)
+zNNr{cV0TbTWbR^T0dyrTsIhL?7uwi=j#?<kleIIDs!5fF&Z>cTH>l6Jx-hbcIOpJ;
+lleMjs^}@BnzOA+Valcu4O33nSQYioc002ovPDHLkV1l~|s9^vA
+
+literal 0
+HcmV?d00001
+
 diff --git a/assets/data_select/options_strings.toml b/assets/data_select/options_strings.toml
 index 5c69763..6bce84b 100644
 --- a/assets/data_select/options_strings.toml
@@ -116,6 +369,37 @@ index 5c69763..6bce84b 100644
 +touch_size = "size"
 +touch_opacity = "opacity"
 +
+diff --git a/assets/data_select/title.png b/assets/data_select/title.png
+index 2df2de0bd6d3232e147035b2dceb8a5e0edebb0f..ca6d7b39e89953bb967c626e084c17e78f9ee094 100644
+GIT binary patch
+delta 681
+zcmV;a0#^P01GEK@7k?WF1^@s6q|*!10007eNkl<Zc-rln>y5)841l5P1YM;obcJ*k
+zR)AH=3bz8Q+zQ+;BFbT78`2Odma0C8acl?F&qk>M5`SaNU)I>zGoD^l{oZ?|+NaK4
+zyPh-FvPX8fW(0E}|6U7_H8xsf!6ZO7sQRq{L;g_{)H|N;Ie+=Uok#ULOif@bKwJl?
+z`ji#2XM&{TJqf&HD{sitFoEcY*2$Ojt{+-szSqV%yOu;>B6rTk&bgu6@;CKUK=VYF
+zLGBIux03dez~!}k1m*pHEARdGxs>wy+L-rVIp<VuZl#oZKA*}M1I`8gPSr2Pd%x-C
+z{+0Tz`Fh8#v41gyu-$(xzSunL&#Fl)Fn5w8Nyj;-LI~4rq0YH~{?vlkx<)#l;%SUQ
+z?YCrkEwN0Zrar}&%p-XcZ&x_ZC%Y^<E~rXCmVyG%{I%i%r`T{hk#Hacs=XY@0ey;n
+z3do-tq4oxOC_udlY}tnxcUbxA0J*h5eh<fv+@5N_<bV8jwnQEV@<%{#s>onT#6W+_
+z1dasx98_!9=JQbs0^ISI{pGd98pu;YzXsA%u0Srxj{;SxaP61=Q9-{3(nre$@|_?(
+z-Jh6C4g%>Jumgi&3dl=vLDErgb^M|6<QMcE)5i)4l8%1!pS%?0YaMegXiF1F<;PJ+
+zCdvd#Pk#jTa_(@Dr&L1rSb?)Au+=Q5>@ZV+{Kz8(oTC%vwu2q6!Wy;^A5!8a@sCw#
+zfSxvN-yL<TYp)eZJ(b4YktAEFv{(;4Btt>I)iG~%q^TWp?(gZ|)}M7d8xun4>d2=!
+zg%Bb~A1f3<^I(OBp&j|7LB9p#DS41>3e5M|mm<a&D>Pgne{#7%{^arp=8182WZPIl
+P00000NkvXXu0mjfSs+gv
+
+delta 497
+zcmV<N0S^AO1^xq&7k?561^@s6gWOsg00001b5ch_0Itp)=>Px$xJg7oR9J=WSnZ9&
+zAPj|5C+I3!AuEtoSOKp>SGW~er7Lj1h&W=vh9o3Xo)k5$zj!uD^$=nQ_^<czWwh}<
+z_Ha?-d)G*<PtA?_b8NMGWWrdH5`p+T)*z#eH`-)}kgGwBFMn~t_)xg*X%A}-9JqPN
+zDD4uCf6mS&K#i~Q;jI5mJJ&D93rm9C-x=~PW#AG%<y*?sFXoHcYv_${!DfIZ06<r<
+z-VM<c9~v4DGHr5i)6W`OjF+0#zosn9BCNIReTvi{vsr5e0Bn3izG<3-);gOj_d7K{
+zg|&8#jrpbVwSRoQcB74V&aLam`diBL`TcA*2>JxZBsmB%03e)m?D(Sq02@A7^J+e=
+z_RvqQb+LX8YF0iSqNMKP2iHM7#GjE1dC-PK9y+d2t=YLcsg@r*JSfGt92Q&(EjlnK
+zRC{$`&Cac#@~hczhogmjYNymF*{St&8n-6&uZ+!q;A$DfM!udfF0p>Q+aQMt`4OTw
+zoXC`hSQ7eI#I8a<7OI$UoR4xKz_r)vt66zW$Ww(rCZtDW7a_lwP;CXbe#(z3^f4hl
+n8jp}~z?Fvh2>AwFY197!?@sF5Vt_p000000NkvXXu0mjf>}~4N
+
 diff --git a/assets/default_config b/assets/default_config
 index 2ccb649..967a236 100644
 --- a/assets/default_config
@@ -132,6 +416,76 @@ index 2ccb649..967a236 100644
  rumble 1
  frame_time 0
  main_volume 8
+diff --git a/assets/fonts/achievement_popup.png b/assets/fonts/achievement_popup.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..a98a39c9d553010564bc84d38808332d8a7bf89f
+GIT binary patch
+literal 767
+zcmV<b0s#GqP)<h;3K|Lk000e1NJLTq00D3S000OG1^@s6;2)$X0008UNkl<Zc-rk*
+zZIZ(v2-Qwc(97B*=w)*S_s^1{ROI1DyE_wRGD%86c;GWNF@#XVC6`=s$tC|zZXtwF
+zkNR@tlwTf_`g*)`eosH*pZl=%==dZ#<!%m^Xz^+OEx%gK{JMqNDE>(OEc`8d9xqy7
+z4}K^<8t&Xiv*&uG2WMo3U&MZ-{^%UkVi>VS>^(iYqIRR$dhqYrsdK*`wbrB7oN~=6
+zpVz-{=ck_T=^3df8%@ved;aBt>e2C~9v!Eb58bzXqw&)-J^%c-RrzcFwRli_6yI6@
+zvY)sfsRtUrR<GHkH6LU?hz}HJq(6K4A^wqgX2$FFr&sU6cm+>+^%7U{oPPo#6AUT9
+z&cwe#;G=$x0;#{v;JbssM<?k@0;jX)4~d~ipsUHdwOD8i5<jdLAQWqFjwpUwe~c3R
+z$O8PA2z-=Vw0@`SyZ0{yNqofR`#F|>&-j-84oN9Z;SwJ))T5qf4Wn7?<#xereR#Zd
+zUfCbypJP)>dBgr$p68hh-S=YSW0X?feC+Ih?yEQcZjn7FbCiGMNpIC$n~SoSt?{+7
+zc<oyDntrwH;6zLA9)hC)X^(Psz$2vWnPfcvl+toAODWU1^lWDv5h0*n{H2tTQhFm#
+z?vE4s&W7d$CvnjTe&@@@DgxEWdp9{C<SEJ4B4BS1p#HUmrDty~M&BY}Pi<NY=uH9`
+zAF(+>J#Ti}M?%@Ct0kwrya*n`e3s`);@?>1IsTe09o8bz%TJQwC&-O25WU_Z9VbCP
+zK}YH{n;+Uk@ezmKyyfEQjaBB?BD-GvyszY&v3CxAk`TSMwC2u8jgYwbBGg)tTzj0}
+z4;a?|-Ksq@&mN(7uiDCg1izJg*eL!U{5;<f=-%2NMszdwD0Wu;(f&mDP(Ayf-jA2w
+xz3W!|NPeE&5f1R`z5RpEj~#Vf@f`>~egNDvBG-97><0h<002ovPDHLkV1h|Ggwp^3
+
+literal 0
+HcmV?d00001
+
+diff --git a/assets/fonts/achievement_popup.toml b/assets/fonts/achievement_popup.toml
+new file mode 100644
+index 0000000..d64f634
+--- /dev/null
++++ b/assets/fonts/achievement_popup.toml
+@@ -0,0 +1,5 @@
++[font]
++image = "achievement_popup.png"
++width = 8
++height = 8
++mapping = "abcdefghijklmnopqrstuvwxyz .?-0123456789,!'()#"
+diff --git a/assets/fonts/achievements.png b/assets/fonts/achievements.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..aee38a37dba36e6745309ba1f0eda53151aaf180
+GIT binary patch
+literal 741
+zcmV<B0vi2^P)<h;3K|Lk000e1NJLTq00Dpi000OG1^@s6@KY$h00084Nkl<Zc-rk+
+z*^R^?48^0ZAkC5zLbGXs{X+60z|RL6X%(b=Oc>uM4k^9sUGI9=yWmytTCaT7{~*h!
+z3B;dXxPHIhwT_fB+qdB7IHY})e*1mpYbk@pAy)V$yfdCx4rh^HV?Rm%5<KS@wXa5h
+zsD5U8=P)yPzAyQ3L{eGlSBpdAYlw}J7@YB7fkogoKB}R=vv62!qp{x#Zk9U|cj^{=
+zqX3oyw82OLEaA5*4yC`d0E}>>{PU!xO@JQxrK0Ig&|2q>EC7f-Q2uvyfTMWO;zt?|
+zv_X=5)|$Yr$x-W{+I=mbR@+DAxrpNa=YQG&+|l7i3;vA)V8yHHZczP2>}v}^RQKX3
+z0K97-;X`;>1^KS-U!sAWup&A|$)2eGG$#OU+@S?rTL5;Ce>`~(<#%Nt@dSVbxJ8+0
+z0<s?8ya_g{09cLJJFBE0Z-Td;0IVZGZvl`Jw4^_dQ*)C1#_V@S<B0;`9nn}jel$Lx
+z7-8+4{YQ-Vq6@$edhAUpB|3<BFty)NOTvfH<1+OB=ltiK!-Kb!lDv9Z!O}tGbs~w*
+zivLnd$~mV}%9L*&)Y1OI*I7=Q>80Ma_B?v+-EeZcJCgs5#!g+1Vt+)BziayL-=V%F
+z`Th!jk8||Cho8Yncr?1(Z6mL3`yxOG(Wf^69Ymu5N7ifxJ#+Nvb>*vm(+FodsTF};
+zG*<HUV~`PSd!!<>lCMvuNMVVRTk@T@$CD@zP>X%M$saA+bP!o+^u<?ei{5^tWVzy>
+z`xS@feC>=0YeLlcYD5Dd#h%5+h+Mn~4hy1p1oYG`Ak8fb%}4B~ZUJfJ(|)A%jL6Vi
+zKr{LHc*Qyji-1RUC)pqIPt7Pmb9|2&F=#&oM%=PNKd|n)rQ^9J7%`gLJpzjOwliA4
+X)gK{b^A!^>00000NkvXXu0mjfdK78T
+
+literal 0
+HcmV?d00001
+
+diff --git a/assets/fonts/achievements.toml b/assets/fonts/achievements.toml
+new file mode 100644
+index 0000000..fc5dc43
+--- /dev/null
++++ b/assets/fonts/achievements.toml
+@@ -0,0 +1,5 @@
++[font]
++image = "achievements.png"
++width = 8
++height = 8
++mapping = "abcdefghijklmnopqrstuvwxyz .?-0123456789:/,!'()#"
 diff --git a/res/ios/AppIcon60x60@2x.png b/res/ios/AppIcon60x60@2x.png
 new file mode 100644
 index 0000000000000000000000000000000000000000..eaa93e77b8db79a6b20cb10fe4334798e62ca47a
@@ -2537,6 +2891,281 @@ index 0000000..c281517
 +    </dict>
 +</dict>
 +</plist>
+diff --git a/src/engine/achievements.cpp b/src/engine/achievements.cpp
+new file mode 100644
+index 0000000..4fc268f
+--- /dev/null
++++ b/src/engine/achievements.cpp
+@@ -0,0 +1,210 @@
++#include "achievements.h"
++#include <deque>
++#include <set>
++#include <vector>
++#include "resource_manager.h"
++#include "save.h"
++#include "tools.h"
++
++namespace TA {
++    namespace achievements {
++        namespace {
++            std::vector<Info> list;
++            std::deque<std::string> pending;
++
++            // State that lives for one map visit (reset when entering from the world map)
++            bool visitRefilled = false;
++            bool visitNightVision = false;
++            std::set<int> visitItems;
++            // State that lives for one level
++            bool levelDamaged = false;
++            bool mk2BackDoor = false;
++
++            constexpr long long BOSS_BIRD_WALKER = 1 << 0, BOSS_SPEEDY = 1 << 1, BOSS_MK2 = 1 << 4,
++                                BOSS_FUKUROKOV = 1 << 5, BOSS_KUKKU = 1 << 7;
++
++            std::string key(const std::string& id) { return "achievement/" + id; }
++
++            long long itemMask() { return TA::save::getSaveParameter("item_mask"); }
++
++            bool hasItem(int item) { return (itemMask() & (1ll << item)) != 0; }
++
++            bool inLevel(const std::string& prefix) { return TA::levelPath.starts_with(prefix); }
++
++            bool slotsContain(const std::string& prefix, int item) {
++                for(int slot = 0; slot < 4; slot++) {
++                    if(TA::save::getSaveParameter(prefix + std::to_string(slot)) == item) {
++                        return true;
++                    }
++                }
++                return false;
++            }
++
++            bool slotsEmpty(const std::string& prefix) {
++                for(int slot = 0; slot < 4; slot++) {
++                    if(TA::save::getSaveParameter(prefix + std::to_string(slot)) != -1) {
++                        return false;
++                    }
++                }
++                return true;
++            }
++
++            bool hasAllItems(std::initializer_list<int> items) {
++                for(int item : items) {
++                    if(!hasItem(item)) {
++                        return false;
++                    }
++                }
++                return true;
++            }
++        }
++    }
++}
++
++void TA::achievements::load() {
++    list.clear();
++    const toml::value& table = TA::resmgr::loadToml("achievements.toml");
++    for(const auto& entry : table.at("achievement").as_array()) {
++        list.push_back({entry.at("id").as_string(), entry.at("name").as_string(), entry.at("description").as_string()});
++    }
++}
++
++int TA::achievements::getCount() {
++    return static_cast<int>(list.size());
++}
++
++const TA::achievements::Info& TA::achievements::get(int index) {
++    return list[index];
++}
++
++bool TA::achievements::isUnlocked(const std::string& id) {
++    return TA::save::hasParameter(key(id)) && TA::save::getParameter(key(id)) != 0;
++}
++
++bool TA::achievements::isUnlocked(int index) {
++    return isUnlocked(list[index].id);
++}
++
++void TA::achievements::unlock(const std::string& id) {
++    if(isUnlocked(id)) {
++        return;
++    }
++    for(const Info& info : list) {
++        if(info.id == id) {
++            TA::save::setParameter(key(id), 1);
++            TA::save::writeToFile();
++            pending.push_back(info.name);
++            return;
++        }
++    }
++}
++
++bool TA::achievements::popPending(std::string& name) {
++    if(pending.empty()) {
++        return false;
++    }
++    name = pending.front();
++    pending.pop_front();
++    return true;
++}
++
++void TA::achievements::onLevelEnter() {
++    if(TA::previousLevelPath == "") {
++        visitRefilled = false;
++        visitNightVision = false;
++        visitItems.clear();
++    }
++    levelDamaged = false;
++    mk2BackDoor = false;
++
++    if(TA::levelPath == "maps/ci/ci3" && !visitRefilled) {
++        unlock("ci_norefill");
++    }
++    if(TA::levelPath == "maps/bf/bf5" && !slotsContain("item_slot", 15)) {
++        unlock("bf2_nowrench");
++    }
++}
++
++void TA::achievements::onItemCollected(int item) {
++    unlock("item_" + std::to_string(item));
++
++    if(inLevel("maps/gi")) {
++        visitItems.insert(item);
++        if(visitItems.contains(20) && visitItems.contains(5) && visitItems.contains(30) && !visitRefilled) {
++            unlock("gi_broken");
++        }
++    }
++    if(item == 17 && inLevel("maps/pv") && !visitNightVision) {
++        unlock("pv_nonv");
++    }
++
++    if(hasAllItems({29, 30, 31, 32, 33, 34})) {
++        unlock("emeralds");
++    }
++    if(hasAllItems({1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 29, 30,
++           31, 32, 33, 34})) {
++        unlock("perfect");
++    }
++}
++
++void TA::achievements::onBossMaskSet(long long newMask) {
++    long long oldMask = TA::save::getSaveParameter("boss_mask");
++    long long added = newMask & ~oldMask;
++
++    if((added & BOSS_BIRD_WALKER) && inLevel("maps/pf/pf3") && !levelDamaged) {
++        unlock("pf3_nohit");
++    }
++    if((added & BOSS_SPEEDY) && inLevel("maps/pm/pm4") && !levelDamaged) {
++        unlock("pm4_nohit");
++    }
++    if((added & BOSS_FUKUROKOV) && inLevel("maps/cc/cc3") && !levelDamaged) {
++        unlock("cc_nohit");
++    }
++    if((added & BOSS_MK2) && mk2BackDoor) {
++        unlock("vt_backdoor");
++    }
++    if(added & BOSS_KUKKU) {
++        unlock("hero");
++        if(!hasItem(29) && !hasItem(30) && !hasItem(31) && !hasItem(32) && !hasItem(34)) {
++            unlock("tough");
++        }
++    }
++}
++
++void TA::achievements::onRingsChanged(int delta) {
++    if(delta < 0) {
++        levelDamaged = true;
++    } else if(delta > 0) {
++        visitRefilled = true;
++    }
++}
++
++void TA::achievements::onRingsRefilled() {
++    visitRefilled = true;
++}
++
++void TA::achievements::onNightVisionUsed() {
++    visitNightVision = true;
++}
++
++void TA::achievements::onLandCutscene() {
++    if(inLevel("maps/bf/bf2") && !levelDamaged) {
++        unlock("bf1_nohit");
++    }
++}
++
++void TA::achievements::onMapTransition(int selection) {
++    if(TA::levelPath == "maps/lr/lr9" && selection == 2 && slotsEmpty("seafox_item_slot")) {
++        unlock("lr_noweapons");
++    }
++    if(TA::levelPath == "maps/lc/lc2" && selection == 7 && !slotsContain("seafox_item_slot", 22)) {
++        unlock("lc_noaa");
++    }
++    if(TA::levelPath == "maps/cf/cf2" && selection == 5 && hasAllItems({14, 32, 11, 12})) {
++        unlock("cf_lazy");
++    }
++}
++
++void TA::achievements::setMk2BackDoor(bool backDoor) {
++    mk2BackDoor = backDoor;
++}
+diff --git a/src/engine/achievements.h b/src/engine/achievements.h
+new file mode 100644
+index 0000000..65970aa
+--- /dev/null
++++ b/src/engine/achievements.h
+@@ -0,0 +1,35 @@
++#ifndef TA_ACHIEVEMENTS_H
++#define TA_ACHIEVEMENTS_H
++
++#include <string>
++
++namespace TA {
++    namespace achievements {
++        struct Info {
++            std::string id, name, description;
++        };
++
++        void load();
++        int getCount();
++        const Info& get(int index);
++        bool isUnlocked(int index);
++        bool isUnlocked(const std::string& id);
++        void unlock(const std::string& id);
++
++        // Returns true and fills name if a freshly unlocked achievement is waiting to be announced.
++        bool popPending(std::string& name);
++
++        // Gameplay hooks
++        void onLevelEnter();
++        void onItemCollected(int item);
++        void onBossMaskSet(long long newMask);
++        void onRingsChanged(int delta);
++        void onRingsRefilled();
++        void onNightVisionUsed();
++        void onLandCutscene();
++        void onMapTransition(int selection);
++        void setMk2BackDoor(bool backDoor);
++    }
++}
++
++#endif // TA_ACHIEVEMENTS_H
+diff --git a/src/engine/character_tool.cpp b/src/engine/character_tool.cpp
+index 5cdec6f..64796ea 100644
+--- a/src/engine/character_tool.cpp
++++ b/src/engine/character_tool.cpp
+@@ -1,4 +1,5 @@
+ #include <algorithm>
++#include "achievements.h"
+ #include "character.h"
+ #include "defs.h"
+ #include "hud.h"
+@@ -222,6 +223,7 @@ void TA_Character::initNightVision() {
+     }
+     usingNightVision = true;
+     nightVisionTimer = 0;
++    TA::achievements::onNightVisionUsed();
+ }
+ 
+ void TA_Character::updateNightVision() {
 diff --git a/src/engine/controller.cpp b/src/engine/controller.cpp
 index eafb3ac..e1095be 100644
 --- a/src/engine/controller.cpp
@@ -2645,10 +3274,13 @@ index 12d7eea..6b37495 100644
  }
  
 diff --git a/src/engine/game.cpp b/src/engine/game.cpp
-index 8eb4c8a..fa75aeb 100644
+index 8eb4c8a..f1e88ca 100644
 --- a/src/engine/game.cpp
 +++ b/src/engine/game.cpp
-@@ -3,6 +3,7 @@
+@@ -1,8 +1,10 @@
+ #include "game.h"
++#include "achievements.h"
+ #include <chrono>
  #include "error.h"
  #include "gamepad.h"
  #include "keyboard.h"
@@ -2656,7 +3288,15 @@ index 8eb4c8a..fa75aeb 100644
  #include "resource_manager.h"
  #include "save.h"
  #include "sound.h"
-@@ -33,6 +34,10 @@ void TA_Game::initSDL() {
+@@ -16,6 +18,7 @@ TA_Game::TA_Game() {
+     TA::random::init(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+     TA::gamepad::init();
+     TA::resmgr::load();
++    TA::achievements::load();
+ 
+     font.loadFont("fonts/pause_menu.toml");
+ 
+@@ -33,6 +36,10 @@ void TA_Game::initSDL() {
  }
  
  void TA_Game::createWindow() {
@@ -2667,7 +3307,7 @@ index 8eb4c8a..fa75aeb 100644
      TA::window = SDL_CreateWindow("Tails Adventure", defaultWindowWidth, defaultWindowHeight, SDL_WINDOW_FULLSCREEN);
      if(TA::window == nullptr) {
          TA::handleSDLError("%s", "failed to create window");
-@@ -100,12 +105,16 @@ bool TA_Game::process() {
+@@ -100,12 +107,16 @@ bool TA_Game::process() {
              return false;
          }
          if(event.type == SDL_EVENT_FINGER_DOWN || event.type == SDL_EVENT_FINGER_MOTION ||
@@ -2685,6 +3325,24 @@ index 8eb4c8a..fa75aeb 100644
  
      if(TA::keyboard::isScancodePressed(SDL_SCANCODE_RALT) && TA::keyboard::isScancodePressed(SDL_SCANCODE_RETURN) &&
          (TA::keyboard::isScancodeJustPressed(SDL_SCANCODE_RALT) ||
+diff --git a/src/engine/game_screen.cpp b/src/engine/game_screen.cpp
+index cac594d..23c0b8c 100644
+--- a/src/engine/game_screen.cpp
++++ b/src/engine/game_screen.cpp
+@@ -1,4 +1,5 @@
+ #include "game_screen.h"
++#include "achievements.h"
+ #include "resource_manager.h"
+ #include "save.h"
+ #include "tools.h"
+@@ -53,6 +54,7 @@ void TA_GameScreen::init() {
+         character.setSpawnPoint(objectSet.getCharacterSpawnPoint(), objectSet.getCharacterSpawnFlip());
+     }
+ 
++    TA::achievements::onLevelEnter();
+     TA::previousLevelPath = TA::levelPath;
+     timer = TA::save::getSaveParameter("time");
+ }
 diff --git a/src/engine/gamepad.cpp b/src/engine/gamepad.cpp
 index c8d452c..529e220 100644
 --- a/src/engine/gamepad.cpp
@@ -2708,6 +3366,32 @@ index c8d452c..529e220 100644
      SDL_AddGamepadMappingsFromFile("gamecontrollerdb.txt");
 +#endif
      updateMapping();
+ }
+ 
+diff --git a/src/engine/object_set.cpp b/src/engine/object_set.cpp
+index 621f2ff..2b53337 100644
+--- a/src/engine/object_set.cpp
++++ b/src/engine/object_set.cpp
+@@ -1,4 +1,5 @@
+ #include "object_set.h"
++#include "achievements.h"
+ #include <array>
+ #include <toml.hpp>
+ #include "character.h"
+@@ -587,6 +588,7 @@ TA_Point TA_ObjectSet::getCharacterPosition() {
+ }
+ 
+ void TA_ObjectSet::addRings(int count) {
++    TA::achievements::onRingsChanged(count);
+     int rings = TA::save::getSaveParameter("rings");
+     rings += count;
+     rings = std::min(rings, getMaxRings());
+@@ -594,6 +596,7 @@ void TA_ObjectSet::addRings(int count) {
+ }
+ 
+ void TA_ObjectSet::addRingsToMaximum() {
++    TA::achievements::onRingsRefilled();
+     TA::save::setSaveParameter("rings", getMaxRings());
  }
  
 diff --git a/src/engine/onscreen_controller.cpp b/src/engine/onscreen_controller.cpp
@@ -2872,7 +3556,7 @@ index 87d3c19..ca4ad40 100644
      std::filesystem::path modsPath = "~/.local/share/tails-adventure/mods";
  #else
 diff --git a/src/engine/save.cpp b/src/engine/save.cpp
-index 9be420f..e803dea 100644
+index 9be420f..ad7a5b0 100644
 --- a/src/engine/save.cpp
 +++ b/src/engine/save.cpp
 @@ -4,6 +4,7 @@
@@ -2892,6 +3576,29 @@ index 9be420f..e803dea 100644
  #elifdef TA_UNIX_INSTALL
      std::filesystem::path path = std::filesystem::path(getenv("HOME")) / ".local/share/tails-adventure";
      std::filesystem::create_directories(path);
+@@ -77,6 +80,10 @@ long long TA::save::getParameter(std::string name) {
+     return saveMap[name];
+ }
+ 
++bool TA::save::hasParameter(std::string name) {
++    return saveMap.contains(name);
++}
++
+ void TA::save::setParameter(std::string name, long long value) {
+     saveMap[name] = value;
+ }
+diff --git a/src/engine/save.h b/src/engine/save.h
+index f1c899d..234630f 100644
+--- a/src/engine/save.h
++++ b/src/engine/save.h
+@@ -8,6 +8,7 @@ namespace TA {
+         void load();
+         void writeToFile();
+         long long getParameter(std::string name);
++        bool hasParameter(std::string name);
+         void setParameter(std::string name, long long value);
+         void setCurrentSave(std::string name);
+         long long getSaveParameter(std::string name, std::string saveName = "");
 diff --git a/src/engine/sprite.cpp b/src/engine/sprite.cpp
 index 5c2cfa9..a30f7d8 100644
 --- a/src/engine/sprite.cpp
@@ -3135,6 +3842,471 @@ index 6053808..2ffe6e9 100644
  };
  
  class TA_OnscreenStick : public TA_Shape {
+diff --git a/src/objects/bird_walker.cpp b/src/objects/bird_walker.cpp
+index bc54974..0e50c52 100644
+--- a/src/objects/bird_walker.cpp
++++ b/src/objects/bird_walker.cpp
+@@ -1,4 +1,5 @@
+ #include "bird_walker.h"
++#include "achievements.h"
+ #include <cmath>
+ #include "bullet.h"
+ #include "defs.h"
+@@ -344,6 +345,7 @@ bool TA_BirdWalker::update() {
+ 
+                 long long bossMask = TA::save::getSaveParameter("boss_mask");
+                 bossMask |= TA_BOSS_BIRD_WALKER;
++                TA::achievements::onBossMaskSet(bossMask);
+                 TA::save::setSaveParameter("boss_mask", bossMask);
+ 
+                 return false;
+diff --git a/src/objects/cruiser.cpp b/src/objects/cruiser.cpp
+index 7f264d4..d59f580 100644
+--- a/src/objects/cruiser.cpp
++++ b/src/objects/cruiser.cpp
+@@ -1,4 +1,5 @@
+ #include "cruiser.h"
++#include "achievements.h"
+ #include "barrel.h"
+ #include "dead_kukku.h"
+ #include "explosion.h"
+@@ -150,6 +151,7 @@ void TA_Cruiser::updateDamage() {
+             if(health == 0) {
+                 int64_t bossMask = TA::save::getSaveParameter("boss_mask");
+                 bossMask |= TA_BOSS_CRUISER;
++                TA::achievements::onBossMaskSet(bossMask);
+                 TA::save::setSaveParameter("boss_mask", bossMask);
+                 state = State::DESTROYED;
+             }
+diff --git a/src/objects/dr_fukurokov.cpp b/src/objects/dr_fukurokov.cpp
+index d9b4bba..08278eb 100644
+--- a/src/objects/dr_fukurokov.cpp
++++ b/src/objects/dr_fukurokov.cpp
+@@ -1,4 +1,5 @@
+ #include "dr_fukurokov.h"
++#include "achievements.h"
+ #include "bullet.h"
+ #include "defs.h"
+ #include "save.h"
+@@ -173,6 +174,7 @@ void TA_DrFukurokov::updateControl() {
+ 
+         int64_t bossMask = TA::save::getSaveParameter("boss_mask");
+         bossMask |= TA_BOSS_DR_FUKUROKOV;
++        TA::achievements::onBossMaskSet(bossMask);
+         TA::save::setSaveParameter("boss_mask", bossMask);
+     }
+ }
+diff --git a/src/objects/great_battle_kukku.cpp b/src/objects/great_battle_kukku.cpp
+index 0a849e0..928c6d6 100644
+--- a/src/objects/great_battle_kukku.cpp
++++ b/src/objects/great_battle_kukku.cpp
+@@ -1,4 +1,5 @@
+ #include "great_battle_kukku.h"
++#include "achievements.h"
+ #include <algorithm>
+ #include "defs.h"
+ #include "enemy_bomb.h"
+@@ -361,6 +362,7 @@ void TA_GreatBattleKukku::updateDestroyed() {
+     if(!isAnimated()) {
+         int64_t bossMask = TA::save::getSaveParameter("boss_mask");
+         bossMask |= TA_BOSS_GREAT_BATTLE_KUKKU;
++        TA::achievements::onBossMaskSet(bossMask);
+         TA::save::setSaveParameter("boss_mask", bossMask);
+ 
+         TA::sound::playMusic("sound/bf.vgm");
+diff --git a/src/objects/item_box.cpp b/src/objects/item_box.cpp
+index 92d3208..b49f93f 100644
+--- a/src/objects/item_box.cpp
++++ b/src/objects/item_box.cpp
+@@ -1,5 +1,6 @@
+ #include "item_box.h"
+ #include <cmath>
++#include "achievements.h"
+ #include "character.h"
+ #include "resource_manager.h"
+ #include "save.h"
+@@ -167,6 +168,7 @@ void TA_ItemBox::addItemToCharacter() {
+     long long itemMask = TA::save::getSaveParameter("item_mask");
+     itemMask |= (1ll << itemNumber);
+     TA::save::setSaveParameter("item_mask", itemMask);
++    TA::achievements::onItemCollected(itemNumber);
+ 
+     if(itemNumber <= 19) {
+         addItemToFirstFreeSlot();
+diff --git a/src/objects/land_cutscene.cpp b/src/objects/land_cutscene.cpp
+index 0cc7d8d..e6d25b8 100644
+--- a/src/objects/land_cutscene.cpp
++++ b/src/objects/land_cutscene.cpp
+@@ -1,4 +1,5 @@
+ #include "land_cutscene.h"
++#include "achievements.h"
+ #include "save.h"
+ #include "sea_fox.h"
+ #include "tools.h"
+@@ -42,6 +43,7 @@ void TA_LandCutscene::updateIdle() {
+         float cameraX = objectSet->getLinks().camera->getPosition().x;
+         objectSet->getLinks().camera->setLockPosition({cameraX, position.y - 96});
+         state = State::CORRECT_X;
++        TA::achievements::onLandCutscene();
+     }
+     characterY = newY;
+ }
+diff --git a/src/objects/mecha_golem.cpp b/src/objects/mecha_golem.cpp
+index 03fcb16..33cf801 100644
+--- a/src/objects/mecha_golem.cpp
++++ b/src/objects/mecha_golem.cpp
+@@ -1,4 +1,5 @@
+ #include "mecha_golem.h"
++#include "achievements.h"
+ #include <algorithm>
+ #include <cmath>
+ #include "explosion.h"
+@@ -461,6 +462,7 @@ bool TA_MechaGolem::canDoTransition() {
+ void TA_MechaGolem::doTransition() {
+     int64_t bossMask = TA::save::getSaveParameter("boss_mask");
+     bossMask |= TA_BOSS_MECHA_GOLEM;
++    TA::achievements::onBossMaskSet(bossMask);
+     TA::save::setSaveParameter("boss_mask", bossMask);
+ 
+     TA::save::setSaveParameter("map_selection", 4);
+diff --git a/src/objects/mecha_golem_mk2.cpp b/src/objects/mecha_golem_mk2.cpp
+index 23ac733..cd1a22a 100644
+--- a/src/objects/mecha_golem_mk2.cpp
++++ b/src/objects/mecha_golem_mk2.cpp
+@@ -1,4 +1,5 @@
+ #include "mecha_golem_mk2.h"
++#include "achievements.h"
+ #include "bullet.h"
+ #include "explosion.h"
+ #include "mecha_golem_energy_shot.h"
+@@ -85,6 +86,12 @@ bool TA_MechaGolemMk2::update() {
+ }
+ 
+ void TA_MechaGolemMk2::updateWait() {
++    {
++        TA_Point characterPosition = objectSet->getCharacterPosition();
++        if(characterPosition.x > enterBlockerPosition.x - 16 && characterPosition.y > enterBlockerPosition.y - 32) {
++            frontDoorUsed = true;
++        }
++    }
+     if(objectSet->getCharacterPosition().y > position.y + 64) {
+         objectSet->getLinks().camera->unlock();
+     } else {
+@@ -94,6 +101,7 @@ void TA_MechaGolemMk2::updateWait() {
+         if(objectSet->getLinks().camera->isLocked()) {
+             TA::sound::playMusic("sound/boss.vgm");
+             state = State::IDLE;
++            TA::achievements::setMk2BackDoor(!frontDoorUsed);
+         }
+     }
+ }
+@@ -224,6 +232,7 @@ void TA_MechaGolemMk2::initDefeated() {
+ 
+     int64_t bossMask = TA::save::getSaveParameter("boss_mask");
+     bossMask |= TA_BOSS_MECHA_GOLEM_MK2;
++    TA::achievements::onBossMaskSet(bossMask);
+     TA::save::setSaveParameter("boss_mask", bossMask);
+ }
+ 
+diff --git a/src/objects/mecha_golem_mk2.h b/src/objects/mecha_golem_mk2.h
+index 8d8f390..41dce88 100644
+--- a/src/objects/mecha_golem_mk2.h
++++ b/src/objects/mecha_golem_mk2.h
+@@ -54,6 +54,7 @@ private:
+     TA_Point enterBlockerPosition;
+     TA_Point exitBlockerPosition;
+     float enterBlockerOffset = 32;
++    bool frontDoorUsed = false;
+     float exitBlockerOffset = 0;
+ 
+     TA_Sound hitSound;
+diff --git a/src/objects/speedy.cpp b/src/objects/speedy.cpp
+index 94d6ceb..81cd735 100644
+--- a/src/objects/speedy.cpp
++++ b/src/objects/speedy.cpp
+@@ -1,4 +1,5 @@
+ #include "speedy.h"
++#include "achievements.h"
+ #include "character.h"
+ #include "defs.h"
+ #include "item_box.h"
+@@ -352,6 +353,7 @@ void TA_Speedy::doTransition() {
+ 
+     int64_t bossMask = TA::save::getSaveParameter("boss_mask");
+     bossMask |= TA_BOSS_SPEEDY;
++    TA::achievements::onBossMaskSet(bossMask);
+     TA::save::setSaveParameter("boss_mask", bossMask);
+ 
+     TA::save::setSaveParameter("last_unlocked", 41);
+diff --git a/src/objects/speedy2.cpp b/src/objects/speedy2.cpp
+index e49e1a1..9714444 100644
+--- a/src/objects/speedy2.cpp
++++ b/src/objects/speedy2.cpp
+@@ -1,4 +1,5 @@
+ #include "speedy2.h"
++#include "achievements.h"
+ #include "defs.h"
+ #include "explosion.h"
+ #include "save.h"
+@@ -61,6 +62,7 @@ bool TA_Speedy2::update() {
+         if(!isAnimated()) {
+             int64_t bossMask = TA::save::getSaveParameter("boss_mask");
+             bossMask |= TA_BOSS_SPEEDY2;
++            TA::achievements::onBossMaskSet(bossMask);
+             TA::save::setSaveParameter("boss_mask", bossMask);
+ 
+             TA::sound::playMusic("sound/bf.vgm");
+diff --git a/src/objects/transition.cpp b/src/objects/transition.cpp
+index 1bcbe21..a06fa91 100644
+--- a/src/objects/transition.cpp
++++ b/src/objects/transition.cpp
+@@ -1,4 +1,5 @@
+ #include "transition.h"
++#include "achievements.h"
+ #include "character.h"
+ #include "save.h"
+ #include "tools.h"
+@@ -24,6 +25,7 @@ bool TA_Transition::update() {
+         if(screenState == TA_SCREENSTATE_GAME) {
+             TA::levelPath = levelPath;
+         } else {
++            TA::achievements::onMapTransition(selection);
+             TA::save::setSaveParameter("map_selection", selection);
+             TA::save::setSaveParameter("seafox", seaFox);
+             if(unlock != 0) {
+diff --git a/src/ui/achievements_section.cpp b/src/ui/achievements_section.cpp
+new file mode 100644
+index 0000000..0cb9b2e
+--- /dev/null
++++ b/src/ui/achievements_section.cpp
+@@ -0,0 +1,175 @@
++#include "achievements_section.h"
++#include <algorithm>
++#include <sstream>
++#include "SDL3/SDL_render.h"
++#include "achievements.h"
++#include "tools.h"
++
++void TA_AchievementsSection::load() {
++    font.loadFont("fonts/achievements.toml");
++    backSound.load("sound/select.ogg", TA_SOUND_CHANNEL_SFX2);
++    backButton.setRectangle({0, 0}, {128, 32});
++    layout();
++}
++
++void TA_AchievementsSection::reset() {
++    scroll = 0;
++    scrollVelocity = 0;
++    quit = false;
++}
++
++std::vector<std::string> TA_AchievementsSection::wrap(const std::string& text, float width) {
++    std::vector<std::string> lines;
++    std::stringstream stream(text);
++    std::string word, line;
++    while(stream >> word) {
++        std::string candidate = line.empty() ? word : line + " " + word;
++        if(!line.empty() && font.getTextWidth(candidate, {-1, 0}) > width) {
++            lines.push_back(line);
++            line = word;
++        } else {
++            line = candidate;
++        }
++    }
++    if(!line.empty()) {
++        lines.push_back(line);
++    }
++    return lines;
++}
++
++void TA_AchievementsSection::layout() {
++    layoutWidth = static_cast<float>(TA::screenWidth);
++    float textWidth = layoutWidth - textLeft - boxRight - boxSize - 6;
++
++    rows.clear();
++    float y = 0;
++    for(int index = 0; index < TA::achievements::getCount(); index++) {
++        const TA::achievements::Info& info = TA::achievements::get(index);
++        std::string name = info.name, description = info.description;
++        for(std::string* text : {&name, &description}) {
++            for(char& ch : *text) {
++                ch = static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
++            }
++        }
++
++        Row row;
++        row.nameLines = wrap(name, textWidth);
++        row.descriptionLines = wrap(description, textWidth);
++        row.y = y;
++        row.height = (row.nameLines.size() + row.descriptionLines.size()) * lineHeight;
++        y += row.height + rowGap;
++        rows.push_back(row);
++    }
++    totalHeight = y;
++}
++
++float TA_AchievementsSection::getMaxScroll() const {
++    return std::max(0.0F, totalHeight - (getListBottom() - listTop));
++}
++
++TA_MainMenuState TA_AchievementsSection::update() {
++    if(layoutWidth != static_cast<float>(TA::screenWidth)) {
++        layout();
++    }
++
++    backButton.update();
++
++    if(controller->isTouchscreen()) {
++        if(TA::touchscreen::isScrolling()) {
++            scrollVelocity = TA::touchscreen::getScrollVector().y;
++        } else if(!TA::equal(scrollVelocity, 0)) {
++            if(scrollVelocity > 0) {
++                scrollVelocity = std::max(0.0F, scrollVelocity - scrollSlowdown * TA::elapsedTime);
++            } else {
++                scrollVelocity = std::min(0.0F, scrollVelocity + scrollSlowdown * TA::elapsedTime);
++            }
++        }
++        scroll += scrollVelocity;
++    } else {
++        scroll += controller->getDirectionVector().y * scrollKeySpeed * TA::elapsedTime;
++    }
++    scroll = std::clamp(scroll, 0.0F, getMaxScroll());
++
++    if(controller->isJustPressed(TA_BUTTON_B) || backButton.isReleased()) {
++        backSound.play();
++        return TA_MAIN_MENU_DATA_SELECT;
++    }
++
++    return TA_MAIN_MENU_ACHIEVEMENTS;
++}
++
++void TA_AchievementsSection::drawFillRect(float x, float y, float w, float h, int r, int g, int b) {
++    SDL_SetRenderDrawColor(TA::renderer, r * baseAlpha / 255, g * baseAlpha / 255, b * baseAlpha / 255, 255);
++    SDL_FRect rect = {x * TA::scaleFactor, y * TA::scaleFactor, w * TA::scaleFactor, h * TA::scaleFactor};
++    SDL_RenderFillRect(TA::renderer, &rect);
++}
++
++void TA_AchievementsSection::drawCheckbox(float x, float y, bool checked) {
++    drawFillRect(x, y, boxSize, boxSize, 136, 119, 136);
++    drawFillRect(x + 1, y + 1, boxSize - 2, boxSize - 2, 0, 0, 0);
++    if(!checked) {
++        return;
++    }
++
++    // 9x9 check mark, drawn as pixels
++    static const char* const art[9] = {
++        "........G",
++        ".......GG",
++        "......GGG",
++        "G....GGG.",
++        "GG..GGG..",
++        "GGGGGG...",
++        ".GGGG....",
++        "..GG.....",
++        "...G.....",
++    };
++    for(int py = 0; py < 9; py++) {
++        for(int px = 0; px < 9; px++) {
++            if(art[py][px] == 'G') {
++                drawFillRect(x + 1 + px, y + 1 + py, 1, 1, 64, 232, 88);
++            }
++        }
++    }
++}
++
++void TA_AchievementsSection::draw() {
++    alpha = baseAlpha;
++    const float top = listTop, bottom = getListBottom();
++    const float boxX = static_cast<float>(TA::screenWidth) - boxRight - boxSize;
++
++    for(int index = 0; index < static_cast<int>(rows.size()); index++) {
++        const Row& row = rows[index];
++        float y = top + row.y - scroll;
++        if(y + row.height < top || y > bottom) {
++            continue;
++        }
++
++        font.setAlpha(alpha);
++        for(const std::string& line : row.nameLines) {
++            if(y >= top && y + 8 <= bottom) {
++                font.drawText({textLeft, y}, line, {-1, 0});
++            }
++            y += lineHeight;
++        }
++        font.setAlpha(alpha * 5 / 8);
++        for(const std::string& line : row.descriptionLines) {
++            if(y >= top && y + 8 <= bottom) {
++                font.drawText({textLeft, y}, line, {-1, 0});
++            }
++            y += lineHeight;
++        }
++
++        float boxY = top + row.y - scroll + (row.height - boxSize) / 2;
++        if(boxY >= top && boxY + boxSize <= bottom) {
++            drawCheckbox(boxX, boxY, TA::achievements::isUnlocked(index));
++        }
++    }
++
++    int unlocked = 0;
++    for(int index = 0; index < TA::achievements::getCount(); index++) {
++        unlocked += TA::achievements::isUnlocked(index) ? 1 : 0;
++    }
++    std::string counter = std::to_string(unlocked) + "/" + std::to_string(TA::achievements::getCount());
++    font.setAlpha(alpha);
++    font.drawText({static_cast<float>(TA::screenWidth) - font.getTextWidth(counter, {-1, 0}) - 8, 12}, counter, {-1, 0});
++}
+diff --git a/src/ui/achievements_section.h b/src/ui/achievements_section.h
+new file mode 100644
+index 0000000..7ea7c71
+--- /dev/null
++++ b/src/ui/achievements_section.h
+@@ -0,0 +1,46 @@
++#ifndef TA_ACHIEVEMENTS_SECTION_H
++#define TA_ACHIEVEMENTS_SECTION_H
++
++#include <string>
++#include <vector>
++#include "font.h"
++#include "main_menu_section.h"
++#include "sound.h"
++#include "tools.h"
++#include "touchscreen.h"
++
++class TA_AchievementsSection : public TA_MainMenuSection {
++public:
++    using TA_MainMenuSection::TA_MainMenuSection;
++    void load() override;
++    TA_MainMenuState update() override;
++    void draw() override;
++    void setAlpha(int alpha) override { baseAlpha = alpha; }
++    void reset() override;
++
++private:
++    struct Row {
++        std::vector<std::string> nameLines, descriptionLines;
++        float y = 0, height = 0;
++    };
++
++    static constexpr float listTop = 26, lineHeight = 9, rowGap = 6, textLeft = 10;
++    static constexpr float boxSize = 11, boxRight = 10, scrollKeySpeed = 2.5F, scrollSlowdown = 0.125F;
++
++    void layout();
++    std::vector<std::string> wrap(const std::string& text, float width);
++    float getListBottom() const { return static_cast<float>(TA::screenHeight) - 6; }
++    float getMaxScroll() const;
++    void drawCheckbox(float x, float y, bool checked);
++    void drawFillRect(float x, float y, float w, float h, int r, int g, int b);
++
++    TA_Font font;
++    TA_Sound backSound;
++    TA_OnscreenButton backButton;
++    std::vector<Row> rows;
++    float totalHeight = 0, scroll = 0, scrollVelocity = 0, layoutWidth = -1;
++    int alpha = 255, baseAlpha = 255;
++    bool quit = false;
++};
++
++#endif // TA_ACHIEVEMENTS_SECTION_H
 diff --git a/src/ui/credits_screen.h b/src/ui/credits_screen.h
 index 85bbc0b..c9a090f 100644
 --- a/src/ui/credits_screen.h
@@ -3147,6 +4319,340 @@ index 85bbc0b..c9a090f 100644
  #include "font.h"
  #include "screen.h"
  #include "sound.h"
+diff --git a/src/ui/data_select_section.cpp b/src/ui/data_select_section.cpp
+index 0d65695..1f56dd4 100644
+--- a/src/ui/data_select_section.cpp
++++ b/src/ui/data_select_section.cpp
+@@ -12,6 +12,7 @@ void TA_DataSelectSection::load() {
+     previewSprite.load("data_select/preview.png", 46, 46);
+     previewSeafoxSprite.load("data_select/preview_seafox.png", 46, 46);
+     optionsSprite.load("data_select/options.png");
++    achievementsSprite.load("data_select/achievements.png");
+ 
+     font.loadFont("fonts/pause_menu.toml");
+     splashFont.loadFont("fonts/splash.toml");
+@@ -20,9 +21,9 @@ void TA_DataSelectSection::load() {
+     selectSound.load("sound/select_item.ogg", TA_SOUND_CHANNEL_SFX1);
+     loadSaveSound.load("sound/load_save.ogg", TA_SOUND_CHANNEL_SFX1);
+ 
+-    for(int pos = 0; pos < 9; pos++) {
++    for(int pos = 0; pos < 10; pos++) {
+         TA_Point topLeft{menuStart + menuOffset * pos, (float)TA::screenHeight / 2 - entrySprite.getHeight() / 2};
+-        TA_Point bottomRight = topLeft + TA_Point(48, (pos == 0 ? 48 : 72));
++        TA_Point bottomRight = topLeft + TA_Point(48, (pos < 2 ? 48 : 72));
+         buttons[pos].setRectangle(topLeft, bottomRight);
+     }
+ 
+@@ -59,11 +60,16 @@ TA_MainMenuState TA_DataSelectSection::processSelection() {
+         return TA_MAIN_MENU_OPTIONS;
+     }
+ 
+-    if(!TA::save::saveExists(selection - 1)) {
+-        createdSave = selection - 1;
++    if(selection == 1) {
++        selectSound.play();
++        return TA_MAIN_MENU_ACHIEVEMENTS;
++    }
++
++    if(!TA::save::saveExists(selection - 2)) {
++        createdSave = selection - 2;
+     }
+-    TA::save::repairSave("save_" + std::to_string(selection - 1));
+-    TA::save::setCurrentSave("save_" + std::to_string(selection - 1));
++    TA::save::repairSave("save_" + std::to_string(selection - 2));
++    TA::save::setCurrentSave("save_" + std::to_string(selection - 2));
+     loadSaveSound.play();
+     locked = true;
+     return TA_MAIN_MENU_DATA_SELECT;
+@@ -82,14 +88,14 @@ void TA_DataSelectSection::updateScroll() {
+ 
+     position += scrollVelocity;
+     position = std::max(position, float(0));
+-    position = std::min(position, menuStart + 9 * menuOffset - TA::screenWidth);
++    position = std::min(position, menuStart + 10 * menuOffset - TA::screenWidth);
+ }
+ 
+ void TA_DataSelectSection::updateSelection() {
+     // menuStart + selection * menuOffset + 24 - need = TA::screenWidth / 2
+     float need = menuStart + selection * menuOffset + 24 - (float)TA::screenWidth / 2;
+     need = std::max(need, float(0));
+-    need = std::min(need, menuStart + 9 * menuOffset - TA::screenWidth);
++    need = std::min(need, menuStart + 10 * menuOffset - TA::screenWidth);
+ 
+     if(!TA::equal(position, need)) {
+         if(position > need) {
+@@ -103,7 +109,7 @@ void TA_DataSelectSection::updateSelection() {
+             selection--;
+             switchSound.play();
+         }
+-        if(selection + 1 < 9 && controller->getDirection() == TA_DIRECTION_RIGHT) {
++        if(selection + 1 < 10 && controller->getDirection() == TA_DIRECTION_RIGHT) {
+             selection++;
+             switchSound.play();
+         }
+@@ -111,7 +117,7 @@ void TA_DataSelectSection::updateSelection() {
+ }
+ 
+ bool TA_DataSelectSection::updateTouchscreenSelection() {
+-    for(int pos = 0; pos < 9; pos++) {
++    for(int pos = 0; pos < 10; pos++) {
+         buttons[pos].setPosition({-position, 0});
+         buttons[pos].update();
+ 
+@@ -138,6 +144,11 @@ void TA_DataSelectSection::drawCustomEntries() {
+     optionsSprite.setAlpha(alpha);
+     optionsSprite.setPosition(menuStart - position, (float)TA::screenHeight / 2 - entrySprite.getHeight() / 2);
+     optionsSprite.draw();
++
++    achievementsSprite.setAlpha(alpha);
++    achievementsSprite.setPosition(
++        menuStart + menuOffset - position, (float)TA::screenHeight / 2 - entrySprite.getHeight() / 2);
++    achievementsSprite.draw();
+ }
+ 
+ void TA_DataSelectSection::drawSaveEntries() {
+@@ -148,7 +159,7 @@ void TA_DataSelectSection::drawSaveEntries() {
+ 
+     for(int num = 0; num < 8; num++) {
+         TA_Point entryPosition{
+-            menuStart + (num + 1) * menuOffset - position, (float)TA::screenHeight / 2 - entrySprite.getHeight() / 2};
++            menuStart + (num + 2) * menuOffset - position, (float)TA::screenHeight / 2 - entrySprite.getHeight() / 2};
+         entrySprite.setPosition(entryPosition);
+         entrySprite.draw();
+ 
+@@ -204,7 +215,7 @@ void TA_DataSelectSection::drawSelector() {
+     if(controller->isTouchscreen() && !locked) {
+         selectorRedSprite.setAlpha(255);
+         selectorWhiteSprite.setAlpha(0);
+-        for(int pos = 0; pos < 9; pos++) {
++        for(int pos = 0; pos < 10; pos++) {
+             if(buttons[pos].isPressed()) {
+                 selectorPosition = pos;
+             }
+@@ -216,7 +227,7 @@ void TA_DataSelectSection::drawSelector() {
+         return;
+     }
+ 
+-    if(selectorPosition >= 1) {
++    if(selectorPosition >= 2) {
+         selectorRedSprite.setFrame(0);
+         selectorWhiteSprite.setFrame(1);
+     } else {
+diff --git a/src/ui/data_select_section.h b/src/ui/data_select_section.h
+index 1b4e7be..5158d16 100644
+--- a/src/ui/data_select_section.h
++++ b/src/ui/data_select_section.h
+@@ -36,7 +36,7 @@ private:
+     std::vector<std::string> generateSplashSequence();
+     std::string generateSplash();
+ 
+-    TA_Sprite entrySprite, selectorRedSprite, selectorWhiteSprite, previewSprite, previewSeafoxSprite, optionsSprite;
++    TA_Sprite entrySprite, selectorRedSprite, selectorWhiteSprite, previewSprite, previewSeafoxSprite, optionsSprite, achievementsSprite;
+     TA_Sound switchSound, selectSound, loadSaveSound;
+     TA_Font font, splashFont;
+     float timer = 0, selectorTimer = 0;
+@@ -44,9 +44,9 @@ private:
+     std::vector<std::string> splashSequence;
+     float splashTimer = 0;
+ 
+-    std::array<TA_OnscreenButton, 9> buttons;
++    std::array<TA_OnscreenButton, 10> buttons;
+     float position = 0, scrollVelocity = 0;
+-    int selection = 1, createdSave = -1, alpha = 255;
++    int selection = 2, createdSave = -1, alpha = 255;
+     bool locked = false;
+ };
+ 
+diff --git a/src/ui/hud.cpp b/src/ui/hud.cpp
+index 2959ea6..b652338 100644
+--- a/src/ui/hud.cpp
++++ b/src/ui/hud.cpp
+@@ -1,5 +1,6 @@
+ #include "hud.h"
+ #include <cmath>
++#include "achievements.h"
+ #include "character.h"
+ #include "save.h"
+ #include "screen.h"
+@@ -30,6 +31,7 @@ void TA_Hud::load(TA_Links newLinks) {
+     pauseButton.setRectangle({0, 0}, {16, 24});
+ 
+     pauseMenu.load(links);
++    popupFont.loadFont("fonts/achievement_popup.toml");
+ 
+     itemPositionKey = (links.seaFox == nullptr ? "item_position" : "seafox_item_position");
+     itemPosition = TA::save::getSaveParameter(itemPositionKey);
+@@ -46,6 +48,85 @@ void TA_Hud::update() {
+     if(!paused) {
+         updateRingsCounter();
+         updateCurrentItem();
++        updateAchievementPopup();
++    }
++}
++
++void TA_Hud::startAchievementPopup(const std::string& name) {
++    auto center = [](const std::string& text) {
++        int total = popupWidth - static_cast<int>(text.size());
++        int left = std::max(0, total / 2);
++        int right = std::max(0, total - left);
++        return std::string(left, ' ') + text + std::string(right, ' ');
++    };
++
++    popupLines.clear();
++    popupLines.push_back(center("achievement finished!"));
++
++    std::string lower = name;
++    for(char& ch : lower) {
++        ch = static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
++    }
++    std::string line;
++    size_t pos = 0;
++    while(pos < lower.size()) {
++        size_t end = lower.find(' ', pos);
++        if(end == std::string::npos) {
++            end = lower.size();
++        }
++        std::string word = lower.substr(pos, end - pos);
++        pos = end + 1;
++        if(!line.empty() && line.size() + 1 + word.size() > popupWidth - 2) {
++            popupLines.push_back(center(line));
++            line = word;
++        } else {
++            line = line.empty() ? word : line + " " + word;
++        }
++    }
++    if(!line.empty()) {
++        popupLines.push_back(center(line));
++    }
++
++    popupTimer = 0;
++    popupActive = true;
++}
++
++void TA_Hud::updateAchievementPopup() {
++    if(!popupActive) {
++        std::string name;
++        if(TA::achievements::popPending(name)) {
++            startAchievementPopup(name);
++        }
++        return;
++    }
++
++    popupTimer += TA::elapsedTime;
++    if(popupTimer > popupShowTime) {
++        popupActive = false;
++    }
++}
++
++void TA_Hud::drawAchievementPopup() {
++    if(!popupActive || popupLines.empty()) {
++        return;
++    }
++
++    TA_Point position{popupX, popupY};
++    if(popupTimer < popupAppearTime) {
++        float factor = popupTimer / popupAppearTime;
++        popupFont.setAlpha(255 * factor);
++        position.x += popupShift * (1 - factor);
++    } else if(popupTimer > popupShowTime - popupAppearTime) {
++        float factor = (popupTimer - (popupShowTime - popupAppearTime)) / popupAppearTime;
++        popupFont.setAlpha(255 * (1 - factor));
++        position.x -= popupShift * factor;
++    } else {
++        popupFont.setAlpha(255);
++    }
++
++    for(const std::string& line : popupLines) {
++        popupFont.drawText(position, line, {-1, 0});
++        position.y += 8;
+     }
+ }
+ 
+@@ -160,6 +241,9 @@ void TA_Hud::draw() {
+         drawTouchControls();
+     }
+     drawFlightBar();
++    if(!paused) {
++        drawAchievementPopup();
++    }
+     if(paused) {
+         pauseMenu.draw();
+     }
+diff --git a/src/ui/hud.h b/src/ui/hud.h
+index 611f03d..6d105da 100644
+--- a/src/ui/hud.h
++++ b/src/ui/hud.h
+@@ -2,6 +2,9 @@
+ #define TA_HUD_H
+ 
+ #include <array>
++#include <string>
++#include <vector>
++#include "font.h"
+ #include "links.h"
+ #include "pause_menu.h"
+ #include "screen.h"
+@@ -15,7 +18,16 @@ private:
+     static constexpr float flightBarSpeed = 0.7;
+     static constexpr float ringAddTime = 6, fadeTime = 6;
+ 
++    // "Achievement finished!" pop-up: same animation as the item pickup label (TA_ItemLabel)
++    static constexpr float popupShowTime = 100, popupAppearTime = 10, popupShift = 32;
++    static constexpr float popupX = 2, popupY = 44;
++    static constexpr int popupWidth = 22;
++
+     TA_Links links;
++    TA_Font popupFont;
++    std::vector<std::string> popupLines;
++    float popupTimer = 0;
++    bool popupActive = false;
+     TA_Sprite ringMonitor, itemSprite, flightBarSprite, leftSprite, rightSprite, pauseSprite;
+     TA_OnscreenButton leftButton, rightButton, pauseButton;
+     std::array<TA_Sprite, 2> ringDigits;
+@@ -29,6 +41,9 @@ private:
+     TA_PauseMenu pauseMenu;
+     bool paused = false, exitPause = false;
+ 
++    void updateAchievementPopup();
++    void startAchievementPopup(const std::string& name);
++    void drawAchievementPopup();
+     void updateRingsCounter();
+     void updateCurrentItem();
+     void updatePause();
+diff --git a/src/ui/main_menu_screen.cpp b/src/ui/main_menu_screen.cpp
+index 6d651df..71047af 100644
+--- a/src/ui/main_menu_screen.cpp
++++ b/src/ui/main_menu_screen.cpp
+@@ -1,5 +1,6 @@
+ #include "main_menu_screen.h"
+ #include "data_select_section.h"
++#include "achievements_section.h"
+ #include "options_section.h"
+ #include "sound.h"
+ #include "tools.h"
+@@ -15,6 +16,9 @@ void TA_MainMenuScreen::init() {
+     sections[TA_MAIN_MENU_OPTIONS] = std::make_unique<TA_OptionsSection>(TA_OptionsSection(&controller));
+     sections[TA_MAIN_MENU_OPTIONS]->load();
+ 
++    sections[TA_MAIN_MENU_ACHIEVEMENTS] = std::make_unique<TA_AchievementsSection>(TA_AchievementsSection(&controller));
++    sections[TA_MAIN_MENU_ACHIEVEMENTS]->load();
++
+     state = neededState = TA_MAIN_MENU_DATA_SELECT;
+ }
+ 
+diff --git a/src/ui/main_menu_section.h b/src/ui/main_menu_section.h
+index d5272ec..d06d001 100644
+--- a/src/ui/main_menu_section.h
++++ b/src/ui/main_menu_section.h
+@@ -3,7 +3,7 @@
+ 
+ #include "controller.h"
+ 
+-enum TA_MainMenuState { TA_MAIN_MENU_DATA_SELECT, TA_MAIN_MENU_OPTIONS, TA_MAIN_MENU_EXIT, TA_MAIN_MENU_MAX };
++enum TA_MainMenuState { TA_MAIN_MENU_DATA_SELECT, TA_MAIN_MENU_OPTIONS, TA_MAIN_MENU_ACHIEVEMENTS, TA_MAIN_MENU_EXIT, TA_MAIN_MENU_MAX };
+ 
+ class TA_MainMenuSection {
+ public:
 diff --git a/src/ui/options_section.cpp b/src/ui/options_section.cpp
 index acf0f64..1f77e77 100644
 --- a/src/ui/options_section.cpp
