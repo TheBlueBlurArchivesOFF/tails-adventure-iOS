@@ -1,5 +1,8 @@
 name: Build IPA
 
+# Put this file in your own GitHub repo at .github/workflows/ios-build.yml, next to tails-adventure-ios.patch
+# (repo root). Run it from the Actions tab -> "Build iOS IPA" -> "Run workflow".
+
 on:
   workflow_dispatch:
     inputs:
@@ -9,7 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-15
+    runs-on: macos-15-intel
     timeout-minutes: 60
     steps:
       - name: Checkout this repository (contains the patch)
@@ -27,6 +30,12 @@ jobs:
         run: |
           git apply --check ../tails-adventure-ios.patch
           git apply ../tails-adventure-ios.patch
+
+      - name: Select newest installed Xcode (the game needs a recent C++23 compiler)
+        run: |
+          best=$(ls -d /Applications/Xcode_*.app 2>/dev/null | sort -V | tail -n 1)
+          echo "Using $best"
+          sudo xcode-select -s "$best/Contents/Developer"
 
       - name: Show toolchain
         run: |
@@ -57,6 +66,7 @@ jobs:
           plutil -lint "$APP/Info.plist"
           /usr/libexec/PlistBuddy -c "Print :CFBundleIdentifier" "$APP/Info.plist"
 
+          # Make sure game data and icons are inside the bundle (the CMake post-build copy did not do it)
           if [ ! -d "$APP/assets" ]; then
             echo "assets missing from bundle, copying them in"
             cp -R ta/assets "$APP/assets"
