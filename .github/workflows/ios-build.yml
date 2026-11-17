@@ -1,7 +1,4 @@
-name: Build IPA
-
-# Put this file in your own GitHub repo at .github/workflows/ios-build.yml, next to tails-adventure-ios.patch
-# (repo root). Run it from the Actions tab -> "Build iOS IPA" -> "Run workflow".
+name: Build iOS IPA
 
 on:
   workflow_dispatch:
