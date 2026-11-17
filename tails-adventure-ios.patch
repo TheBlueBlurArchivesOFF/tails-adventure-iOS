@@ -4691,6 +4691,65 @@ index 0000000..7ea7c71
 +};
 +
 +#endif // TA_ACHIEVEMENTS_SECTION_H
+diff --git a/src/ui/area_selector.cpp b/src/ui/area_selector.cpp
+index ab73b28..b7a69a8 100644
+--- a/src/ui/area_selector.cpp
++++ b/src/ui/area_selector.cpp
+@@ -12,6 +12,7 @@ void TA_AreaSelector::load() {
+     addSelectedArea();
+     setActivePoints();
+     loadTailsIcon();
++    loadBackButton();
+     switchSound.load("sound/switch.ogg", TA_SOUND_CHANNEL_SFX1);
+ }
+ 
+@@ -97,8 +98,20 @@ void TA_AreaSelector::loadTailsIcon() {
+     tailsIcon.setAnimation(TA::save::getSaveParameter("seafox") ? "seafox" : "blink");
+ }
+ 
++void TA_AreaSelector::loadBackButton() {
++    // Same "<- DATA SELECT" banner as the main menu title; tapping it (or pressing pause) leaves the map
++    backSprite.load("data_select/title.png", 112, 9);
++    backSprite.setFrame(0);
++    backSprite.setPosition(0, 10);
++    backButton.setRectangle({0, 4}, {104, 26});
++}
++
+ TA_ScreenState TA_AreaSelector::update() {
+     controller.update();
++    backButton.update();
++    if(backButton.isReleased() || controller.isJustPressed(TA_BUTTON_PAUSE)) {
++        return TA_SCREENSTATE_MAIN_MENU;
++    }
+     if(controller.isJustChangedDirection()) {
+         TA_Direction direction = controller.getDirection();
+         if(direction != TA_DIRECTION_MAX && points[pos].getNeighbour(direction) != -1 &&
+@@ -139,6 +152,7 @@ void TA_AreaSelector::draw() {
+         points[pos].draw();
+     }
+     tailsIcon.draw();
++    backSprite.draw();
+     controller.draw();
+ }
+ 
+diff --git a/src/ui/area_selector.h b/src/ui/area_selector.h
+index b7dc562..8fc6a89 100644
+--- a/src/ui/area_selector.h
++++ b/src/ui/area_selector.h
+@@ -16,10 +16,12 @@ private:
+     void addSelectedArea();
+     void setActivePoints();
+     void loadTailsIcon();
++    void loadBackButton();
+ 
+     TA_Controller controller;
+     std::vector<TA_MapPoint> points;
+-    TA_Sprite tailsIcon;
++    TA_Sprite tailsIcon, backSprite;
++    TA_OnscreenButton backButton;
+     TA_Sound switchSound;
+     int pos;
+     float bfTimer = 0;
 diff --git a/src/ui/credits_screen.h b/src/ui/credits_screen.h
 index 85bbc0b..c9a090f 100644
 --- a/src/ui/credits_screen.h
