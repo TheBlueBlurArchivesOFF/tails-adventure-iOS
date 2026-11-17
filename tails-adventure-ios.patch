@@ -332,18 +332,401 @@ index 0000000..7ed7468
 +
 diff --git a/assets/data_select/achievements.png b/assets/data_select/achievements.png
 new file mode 100644
-index 0000000000000000000000000000000000000000..895361f3133edb588707140f3f6886495a282c6c
+index 0000000000000000000000000000000000000000..0358518b1ffb56094835011d8c4fd62eee204bac
 GIT binary patch
-literal 409
-zcmV;K0cQS*P)<h;3K|Lk000e1NJLTq001xm001}$1^@s6yHR`U0004CNkl<Zc-rll
-z>#>6%5QTR$RA39VU<+v>t<ZwDk``hKX~7n3Ve^X&F@h)%hI<b)nIy=r=i7%eFcAqg
-zJQNYp<Njz;{PlLF3pG9f00000002pYiAZE=^JUB(ql5tP?*UY*1Ficc`+0uW$$-}V
-zTl^Uj*2eYo^Ad^?zPF}Y295xxiYyMGb-yXnmd3h7=J}c2JIMgCBKFq!;H&h&nVv{3
-zuOfRPU(|E=Lb1J&PiU^X$5!HO7D_x$k%2!8u+^~5G;v61Zive-#g~A<sRT|X@E8RE
-z04VubWtt{r000000002c?sl3mDi2vi+|OVJ30+^$`~L6EZTUU2{=Lo>KA7PHVhv@l
-z=Ku%=GbVsuqmamuT@3)0s{~W+xMQ~8R;c~$&adrM4k7mDNA0cM+53IH2e@PAj(Hr%
-zFQcs<D0tfN5s(n5ig6~3h%ttYF_IFwz0!;I>)O2leQT~X)ubK*00000NkvXXu0mjf
-DY`L^7
+literal 318
+zcmV-E0m1%>P)<h;3K|Lk000e1NJLTq002+`000yS1^@s68rZtm00036Nkl<Zc-rk(
+z+YN&-3^a%dx<Xc91y<;gT>(a5g{;sO=to6`EI)&aRQ3FY;OxYQeQ`P>+6dNc0};{u
+zn88GYP4|g<&~VN`;7RL<XxpBU!6x!<-CF~>l`^`{wXR^$YGI8a5C;vsMgy%j)~ay#
+zIetIJsdc4N#?SZtS;Fx3JU<DS!CE*e4^soRL_G4O%|u#W!bYV+!g*w9`{sG`e9|q<
+zoxG$<8AAt91a~Hu_Vcuu-a30c2{*J<hevp1Ls^-SDkFQ?Y40*q2j^n=roc-2W@#sv
+zfk@>?aTeAi(OSbCq%#`$uY+_SVLdx!V~m02u5!z=fDPP4K;Z9cAZTc}7hkK-?;+II
+QrT_o{07*qoM6N<$f=6VHP5=M^
+
+literal 0
+HcmV?d00001
+
+diff --git a/assets/data_select/background.png b/assets/data_select/background.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..6086119309ebefbf61e8c605bede16358ec330b8
+GIT binary patch
+literal 19502
+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
+R{K)_S002ovPDHLkV1m?MC)5A{
 
 literal 0
 HcmV?d00001
@@ -4321,10 +4704,18 @@ index 85bbc0b..c9a090f 100644
  #include "screen.h"
  #include "sound.h"
 diff --git a/src/ui/data_select_section.cpp b/src/ui/data_select_section.cpp
-index 0d65695..1f56dd4 100644
+index 0d65695..f4da9db 100644
 --- a/src/ui/data_select_section.cpp
 +++ b/src/ui/data_select_section.cpp
-@@ -12,6 +12,7 @@ void TA_DataSelectSection::load() {
+@@ -1,6 +1,7 @@
+ #include "data_select_section.h"
+ #include <bit>
+ #include <numeric>
++#include "SDL3/SDL_render.h"
+ #include "resource_manager.h"
+ #include "save.h"
+ #include "tools.h"
+@@ -12,6 +13,7 @@ void TA_DataSelectSection::load() {
      previewSprite.load("data_select/preview.png", 46, 46);
      previewSeafoxSprite.load("data_select/preview_seafox.png", 46, 46);
      optionsSprite.load("data_select/options.png");
@@ -4332,19 +4723,20 @@ index 0d65695..1f56dd4 100644
  
      font.loadFont("fonts/pause_menu.toml");
      splashFont.loadFont("fonts/splash.toml");
-@@ -20,9 +21,9 @@ void TA_DataSelectSection::load() {
+@@ -20,9 +22,9 @@ void TA_DataSelectSection::load() {
      selectSound.load("sound/select_item.ogg", TA_SOUND_CHANNEL_SFX1);
      loadSaveSound.load("sound/load_save.ogg", TA_SOUND_CHANNEL_SFX1);
  
 -    for(int pos = 0; pos < 9; pos++) {
-+    for(int pos = 0; pos < 10; pos++) {
-         TA_Point topLeft{menuStart + menuOffset * pos, (float)TA::screenHeight / 2 - entrySprite.getHeight() / 2};
+-        TA_Point topLeft{menuStart + menuOffset * pos, (float)TA::screenHeight / 2 - entrySprite.getHeight() / 2};
 -        TA_Point bottomRight = topLeft + TA_Point(48, (pos == 0 ? 48 : 72));
-+        TA_Point bottomRight = topLeft + TA_Point(48, (pos < 2 ? 48 : 72));
++    for(int pos = 0; pos < 10; pos++) {
++        TA_Point topLeft{entryX(pos), entryY(pos)};
++        TA_Point bottomRight = topLeft + TA_Point(pos == 1 ? columnWidth : 48, pos == 1 ? achievementsHeight : (pos == 0 ? 48 : 72));
          buttons[pos].setRectangle(topLeft, bottomRight);
      }
  
-@@ -59,11 +60,16 @@ TA_MainMenuState TA_DataSelectSection::processSelection() {
+@@ -59,11 +61,16 @@ TA_MainMenuState TA_DataSelectSection::processSelection() {
          return TA_MAIN_MENU_OPTIONS;
      }
  
@@ -4365,33 +4757,51 @@ index 0d65695..1f56dd4 100644
      loadSaveSound.play();
      locked = true;
      return TA_MAIN_MENU_DATA_SELECT;
-@@ -82,14 +88,14 @@ void TA_DataSelectSection::updateScroll() {
+@@ -82,14 +89,14 @@ void TA_DataSelectSection::updateScroll() {
  
      position += scrollVelocity;
      position = std::max(position, float(0));
 -    position = std::min(position, menuStart + 9 * menuOffset - TA::screenWidth);
-+    position = std::min(position, menuStart + 10 * menuOffset - TA::screenWidth);
++    position = std::min(position, contentEnd() - TA::screenWidth);
  }
  
  void TA_DataSelectSection::updateSelection() {
      // menuStart + selection * menuOffset + 24 - need = TA::screenWidth / 2
-     float need = menuStart + selection * menuOffset + 24 - (float)TA::screenWidth / 2;
+-    float need = menuStart + selection * menuOffset + 24 - (float)TA::screenWidth / 2;
++    float need = (selection == 1 ? entryX(0) : entryX(selection)) + 24 - (float)TA::screenWidth / 2;
      need = std::max(need, float(0));
 -    need = std::min(need, menuStart + 9 * menuOffset - TA::screenWidth);
-+    need = std::min(need, menuStart + 10 * menuOffset - TA::screenWidth);
++    need = std::min(need, contentEnd() - TA::screenWidth);
  
      if(!TA::equal(position, need)) {
          if(position > need) {
-@@ -103,7 +109,7 @@ void TA_DataSelectSection::updateSelection() {
-             selection--;
-             switchSound.play();
+@@ -99,19 +106,29 @@ void TA_DataSelectSection::updateSelection() {
+             position = std::min(need, position + scrollSpeed * TA::elapsedTime);
          }
+     } else if(controller->isJustChangedDirection()) {
+-        if(selection - 1 >= 0 && controller->getDirection() == TA_DIRECTION_LEFT) {
+-            selection--;
++        TA_Direction direction = controller->getDirection();
++        if(direction == TA_DIRECTION_LEFT && selection >= 2) {
++            selection = (selection == 2) ? lastColumnSelection : selection - 1;
+             switchSound.play();
+-        }
 -        if(selection + 1 < 9 && controller->getDirection() == TA_DIRECTION_RIGHT) {
-+        if(selection + 1 < 10 && controller->getDirection() == TA_DIRECTION_RIGHT) {
++        } else if(direction == TA_DIRECTION_RIGHT && selection < 2) {
++            lastColumnSelection = selection;
++            selection = 2;
++            switchSound.play();
++        } else if(direction == TA_DIRECTION_RIGHT && selection + 1 < 10) {
              selection++;
              switchSound.play();
++        } else if(direction == TA_DIRECTION_DOWN && selection == 0) {
++            selection = 1;
++            switchSound.play();
++        } else if(direction == TA_DIRECTION_UP && selection == 1) {
++            selection = 0;
++            switchSound.play();
          }
-@@ -111,7 +117,7 @@ void TA_DataSelectSection::updateSelection() {
+     }
  }
  
  bool TA_DataSelectSection::updateTouchscreenSelection() {
@@ -4400,50 +4810,146 @@ index 0d65695..1f56dd4 100644
          buttons[pos].setPosition({-position, 0});
          buttons[pos].update();
  
-@@ -138,6 +144,11 @@ void TA_DataSelectSection::drawCustomEntries() {
+@@ -136,8 +153,12 @@ void TA_DataSelectSection::draw() {
+ 
+ void TA_DataSelectSection::drawCustomEntries() {
      optionsSprite.setAlpha(alpha);
-     optionsSprite.setPosition(menuStart - position, (float)TA::screenHeight / 2 - entrySprite.getHeight() / 2);
+-    optionsSprite.setPosition(menuStart - position, (float)TA::screenHeight / 2 - entrySprite.getHeight() / 2);
++    optionsSprite.setPosition(entryX(0) - position, entryY(0));
      optionsSprite.draw();
 +
 +    achievementsSprite.setAlpha(alpha);
-+    achievementsSprite.setPosition(
-+        menuStart + menuOffset - position, (float)TA::screenHeight / 2 - entrySprite.getHeight() / 2);
++    achievementsSprite.setPosition(entryX(1) - position, entryY(1));
 +    achievementsSprite.draw();
  }
  
  void TA_DataSelectSection::drawSaveEntries() {
-@@ -148,7 +159,7 @@ void TA_DataSelectSection::drawSaveEntries() {
+@@ -147,8 +168,7 @@ void TA_DataSelectSection::drawSaveEntries() {
+     font.setAlpha(255 * ((float)alpha / 255) * ((float)alpha / 255));
  
      for(int num = 0; num < 8; num++) {
-         TA_Point entryPosition{
+-        TA_Point entryPosition{
 -            menuStart + (num + 1) * menuOffset - position, (float)TA::screenHeight / 2 - entrySprite.getHeight() / 2};
-+            menuStart + (num + 2) * menuOffset - position, (float)TA::screenHeight / 2 - entrySprite.getHeight() / 2};
++        TA_Point entryPosition{entryX(num + 2) - position, entryY(num + 2)};
          entrySprite.setPosition(entryPosition);
          entrySprite.draw();
  
-@@ -204,7 +215,7 @@ void TA_DataSelectSection::drawSelector() {
+@@ -197,14 +217,18 @@ void TA_DataSelectSection::drawSplash() {
+ 
+ void TA_DataSelectSection::drawSelector() {
+     selectorTimer += TA::elapsedTime;
+-    selectorRedSprite.setAlpha(alpha);
+-    selectorWhiteSprite.setAlpha(TA::linearInterpolation(0, alpha, selectorTimer / selectorBlinkTime));
++    int redAlpha = alpha;
++    int whiteAlpha = TA::linearInterpolation(0, alpha, selectorTimer / selectorBlinkTime);
++    selectorRedSprite.setAlpha(redAlpha);
++    selectorWhiteSprite.setAlpha(whiteAlpha);
+ 
+     int selectorPosition = -1;
      if(controller->isTouchscreen() && !locked) {
-         selectorRedSprite.setAlpha(255);
-         selectorWhiteSprite.setAlpha(0);
+-        selectorRedSprite.setAlpha(255);
+-        selectorWhiteSprite.setAlpha(0);
 -        for(int pos = 0; pos < 9; pos++) {
++        redAlpha = 255;
++        whiteAlpha = 0;
++        selectorRedSprite.setAlpha(redAlpha);
++        selectorWhiteSprite.setAlpha(whiteAlpha);
 +        for(int pos = 0; pos < 10; pos++) {
              if(buttons[pos].isPressed()) {
                  selectorPosition = pos;
              }
-@@ -216,7 +227,7 @@ void TA_DataSelectSection::drawSelector() {
+@@ -216,7 +240,12 @@ void TA_DataSelectSection::drawSelector() {
          return;
      }
  
 -    if(selectorPosition >= 1) {
++    if(selectorPosition == 1) {
++        drawAchievementsSelector(redAlpha, whiteAlpha);
++        return;
++    }
++
 +    if(selectorPosition >= 2) {
          selectorRedSprite.setFrame(0);
          selectorWhiteSprite.setFrame(1);
      } else {
+@@ -224,13 +253,33 @@ void TA_DataSelectSection::drawSelector() {
+         selectorWhiteSprite.setFrame(3);
+     }
+ 
+-    selectorRedSprite.setPosition(
+-        menuStart + selectorPosition * menuOffset - position, TA::screenHeight / 2 - selectorRedSprite.getHeight() / 2);
++    selectorRedSprite.setPosition(entryX(selectorPosition) - position, entryY(selectorPosition));
+     selectorWhiteSprite.setPosition(selectorRedSprite.getPosition());
+     selectorRedSprite.draw();
+     selectorWhiteSprite.draw();
+ }
+ 
++void TA_DataSelectSection::drawAchievementsSelector(int redAlpha, int whiteAlpha) {
++    // The bar is not a 48-wide box, so its blinking outline is drawn as four 1px rectangles
++    float x = entryX(1) - position, y = entryY(1);
++    float w = columnWidth, h = achievementsHeight;
++    const SDL_FRect edges[4] = {{x, y, w, 1}, {x, y + h - 1, w, 1}, {x, y, 1, h}, {x + w - 1, y, 1, h}};
++
++    auto drawOutline = [&](int r, int g, int b, int a) {
++        SDL_SetRenderDrawBlendMode(TA::renderer, SDL_BLENDMODE_BLEND);
++        SDL_SetRenderDrawColor(TA::renderer, r, g, b, a);
++        for(SDL_FRect edge : edges) {
++            SDL_FRect scaled = {edge.x * TA::scaleFactor, edge.y * TA::scaleFactor, edge.w * TA::scaleFactor,
++                edge.h * TA::scaleFactor};
++            SDL_RenderFillRect(TA::renderer, &scaled);
++        }
++        SDL_SetRenderDrawBlendMode(TA::renderer, SDL_BLENDMODE_NONE);
++    };
++
++    drawOutline(255, 0, 0, redAlpha);
++    drawOutline(255, 255, 255, whiteAlpha);
++}
++
+ int TA_DataSelectSection::getSavePercent(int save) {
+     if(!TA::save::saveExists(save) || save == createdSave) {
+         return 0;
 diff --git a/src/ui/data_select_section.h b/src/ui/data_select_section.h
-index 1b4e7be..5158d16 100644
+index 1b4e7be..031304b 100644
 --- a/src/ui/data_select_section.h
 +++ b/src/ui/data_select_section.h
-@@ -36,7 +36,7 @@ private:
+@@ -4,6 +4,7 @@
+ #include "font.h"
+ #include "main_menu_section.h"
+ #include "sound.h"
++#include "tools.h"
+ 
+ class TA_DataSelectSection : public TA_MainMenuSection {
+ public:
+@@ -21,6 +22,23 @@ private:
+     const float loadTime = 60;
+     const float scrollSlowdown = 0.125;
+ 
++    // Layout: column 0 stacks Options (48x48 box) over Achievements (80x20 bar); saves follow to the right
++    static constexpr float columnWidth = 80, achievementsHeight = 20, achievementsOffsetY = 60, saveGap = 16;
++    float entryX(int pos) const {
++        if(pos == 0) {
++            return menuStart + (columnWidth - 48) / 2;
++        }
++        if(pos == 1) {
++            return menuStart;
++        }
++        return menuStart + columnWidth + saveGap + (pos - 2) * menuOffset;
++    }
++    float entryY(int pos) const {
++        float top = static_cast<float>(TA::screenHeight) / 2 - 36;
++        return pos == 1 ? top + achievementsOffsetY : top;
++    }
++    float contentEnd() const { return menuStart + columnWidth + saveGap + 8 * menuOffset; }
++
+     void updateScroll();
+     void updateSelection();
+     bool updateTouchscreenSelection();
+@@ -32,11 +50,12 @@ private:
+     void drawModCount();
+     void drawSplash();
+     void drawSelector();
++    void drawAchievementsSelector(int redAlpha, int whiteAlpha);
+ 
      std::vector<std::string> generateSplashSequence();
      std::string generateSplash();
  
@@ -4452,7 +4958,7 @@ index 1b4e7be..5158d16 100644
      TA_Sound switchSound, selectSound, loadSaveSound;
      TA_Font font, splashFont;
      float timer = 0, selectorTimer = 0;
-@@ -44,9 +44,9 @@ private:
+@@ -44,9 +63,10 @@ private:
      std::vector<std::string> splashSequence;
      float splashTimer = 0;
  
@@ -4461,6 +4967,7 @@ index 1b4e7be..5158d16 100644
      float position = 0, scrollVelocity = 0;
 -    int selection = 1, createdSave = -1, alpha = 255;
 +    int selection = 2, createdSave = -1, alpha = 255;
++    int lastColumnSelection = 0;
      bool locked = false;
  };
  
@@ -4621,17 +5128,26 @@ index 611f03d..6d105da 100644
      void updateCurrentItem();
      void updatePause();
 diff --git a/src/ui/main_menu_screen.cpp b/src/ui/main_menu_screen.cpp
-index 6d651df..71047af 100644
+index 6d651df..69875d2 100644
 --- a/src/ui/main_menu_screen.cpp
 +++ b/src/ui/main_menu_screen.cpp
-@@ -1,5 +1,6 @@
+@@ -1,5 +1,7 @@
  #include "main_menu_screen.h"
++#include <cmath>
  #include "data_select_section.h"
 +#include "achievements_section.h"
  #include "options_section.h"
  #include "sound.h"
  #include "tools.h"
-@@ -15,6 +16,9 @@ void TA_MainMenuScreen::init() {
+@@ -7,6 +9,7 @@
+ void TA_MainMenuScreen::init() {
+     TA::sound::playMusic("sound/password.vgm");
+     titleSprite.load("data_select/title.png", 112, 9);
++    backgroundSprite.load("data_select/background.png");
+     controller.load();
+ 
+     sections[TA_MAIN_MENU_DATA_SELECT] = std::make_unique<TA_DataSelectSection>(TA_DataSelectSection(&controller));
+@@ -15,11 +18,25 @@ void TA_MainMenuScreen::init() {
      sections[TA_MAIN_MENU_OPTIONS] = std::make_unique<TA_OptionsSection>(TA_OptionsSection(&controller));
      sections[TA_MAIN_MENU_OPTIONS]->load();
  
@@ -4640,6 +5156,42 @@ index 6d651df..71047af 100644
 +
      state = neededState = TA_MAIN_MENU_DATA_SELECT;
  }
+ 
++void TA_MainMenuScreen::drawBackground() {
++    // Tiles scroll to the left forever: draw as many copies as needed to cover the screen
++    float width = static_cast<float>(backgroundSprite.getWidth());
++    backgroundScroll = std::fmod(backgroundScroll + backgroundSpeed * TA::elapsedTime, width);
++    for(float x = -backgroundScroll; x < static_cast<float>(TA::screenWidth); x += width) {
++        backgroundSprite.setPosition(x, 0);
++        backgroundSprite.draw();
++    }
++}
++
+ TA_ScreenState TA_MainMenuScreen::update() {
+     controller.update();
++    drawBackground();
+     updateTitle();
+ 
+     if(state == neededState) {
+diff --git a/src/ui/main_menu_screen.h b/src/ui/main_menu_screen.h
+index fe7bef8..b4c4651 100644
+--- a/src/ui/main_menu_screen.h
++++ b/src/ui/main_menu_screen.h
+@@ -14,11 +14,14 @@ private:
+     const float transitionTime = 5;
+ 
+     void updateTitle();
++    void drawBackground();
+ 
+     TA_Controller controller = TA_Controller();
+     std::array<std::unique_ptr<TA_MainMenuSection>, TA_MAIN_MENU_MAX> sections;
+     TA_MainMenuState state, neededState;
+-    TA_Sprite titleSprite;
++    TA_Sprite titleSprite, backgroundSprite;
++    float backgroundScroll = 0;
++    static constexpr float backgroundSpeed = 0.25F;
+     float timer = 0;
+ };
  
 diff --git a/src/ui/main_menu_section.h b/src/ui/main_menu_section.h
 index d5272ec..d06d001 100644
