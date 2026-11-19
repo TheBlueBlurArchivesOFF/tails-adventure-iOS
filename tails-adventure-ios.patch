@@ -4804,18 +4804,19 @@ index 85bbc0b..c9a090f 100644
  #include "screen.h"
  #include "sound.h"
 diff --git a/src/ui/data_select_section.cpp b/src/ui/data_select_section.cpp
-index 0d65695..ee5743e 100644
+index 0d65695..80c3c11 100644
 --- a/src/ui/data_select_section.cpp
 +++ b/src/ui/data_select_section.cpp
-@@ -1,6 +1,7 @@
+@@ -1,6 +1,8 @@
  #include "data_select_section.h"
  #include <bit>
  #include <numeric>
++#include <sstream>
 +#include "SDL3/SDL_render.h"
  #include "resource_manager.h"
  #include "save.h"
  #include "tools.h"
-@@ -11,7 +12,9 @@ void TA_DataSelectSection::load() {
+@@ -11,7 +13,9 @@ void TA_DataSelectSection::load() {
      selectorWhiteSprite.load("data_select/selector.png", 48, 72);
      previewSprite.load("data_select/preview.png", 46, 46);
      previewSeafoxSprite.load("data_select/preview_seafox.png", 46, 46);
@@ -4825,7 +4826,7 @@ index 0d65695..ee5743e 100644
  
      font.loadFont("fonts/pause_menu.toml");
      splashFont.loadFont("fonts/splash.toml");
-@@ -20,9 +23,9 @@ void TA_DataSelectSection::load() {
+@@ -20,9 +24,9 @@ void TA_DataSelectSection::load() {
      selectSound.load("sound/select_item.ogg", TA_SOUND_CHANNEL_SFX1);
      loadSaveSound.load("sound/load_save.ogg", TA_SOUND_CHANNEL_SFX1);
  
@@ -4838,7 +4839,7 @@ index 0d65695..ee5743e 100644
          buttons[pos].setRectangle(topLeft, bottomRight);
      }
  
-@@ -38,6 +41,8 @@ TA_MainMenuState TA_DataSelectSection::update() {
+@@ -38,6 +42,8 @@ TA_MainMenuState TA_DataSelectSection::update() {
          return TA_MAIN_MENU_DATA_SELECT;
      }
  
@@ -4847,7 +4848,7 @@ index 0d65695..ee5743e 100644
      if(controller->isTouchscreen()) {
          updateScroll();
          if(updateTouchscreenSelection()) {
-@@ -45,6 +50,9 @@ TA_MainMenuState TA_DataSelectSection::update() {
+@@ -45,6 +51,9 @@ TA_MainMenuState TA_DataSelectSection::update() {
          }
      } else {
          updateSelection();
@@ -4857,7 +4858,7 @@ index 0d65695..ee5743e 100644
          if(controller->isJustPressed(TA_BUTTON_A) || controller->isJustPressed(TA_BUTTON_PAUSE)) {
              return processSelection();
          }
-@@ -53,17 +61,57 @@ TA_MainMenuState TA_DataSelectSection::update() {
+@@ -53,17 +62,57 @@ TA_MainMenuState TA_DataSelectSection::update() {
      return TA_MAIN_MENU_DATA_SELECT;
  }
  
@@ -4919,7 +4920,7 @@ index 0d65695..ee5743e 100644
      loadSaveSound.play();
      locked = true;
      return TA_MAIN_MENU_DATA_SELECT;
-@@ -82,14 +130,14 @@ void TA_DataSelectSection::updateScroll() {
+@@ -82,14 +131,14 @@ void TA_DataSelectSection::updateScroll() {
  
      position += scrollVelocity;
      position = std::max(position, float(0));
@@ -4937,7 +4938,7 @@ index 0d65695..ee5743e 100644
  
      if(!TA::equal(position, need)) {
          if(position > need) {
-@@ -99,19 +147,32 @@ void TA_DataSelectSection::updateSelection() {
+@@ -99,19 +148,32 @@ void TA_DataSelectSection::updateSelection() {
              position = std::min(need, position + scrollSpeed * TA::elapsedTime);
          }
      } else if(controller->isJustChangedDirection()) {
@@ -4975,7 +4976,7 @@ index 0d65695..ee5743e 100644
          buttons[pos].setPosition({-position, 0});
          buttons[pos].update();
  
-@@ -129,6 +190,7 @@ bool TA_DataSelectSection::updateTouchscreenSelection() {
+@@ -129,6 +191,7 @@ bool TA_DataSelectSection::updateTouchscreenSelection() {
  void TA_DataSelectSection::draw() {
      drawCustomEntries();
      drawSaveEntries();
@@ -4983,7 +4984,7 @@ index 0d65695..ee5743e 100644
      drawModCount();
      drawSplash();
      drawSelector();
-@@ -136,8 +198,12 @@ void TA_DataSelectSection::draw() {
+@@ -136,8 +199,12 @@ void TA_DataSelectSection::draw() {
  
  void TA_DataSelectSection::drawCustomEntries() {
      optionsSprite.setAlpha(alpha);
@@ -4997,7 +4998,7 @@ index 0d65695..ee5743e 100644
  }
  
  void TA_DataSelectSection::drawSaveEntries() {
-@@ -147,8 +213,7 @@ void TA_DataSelectSection::drawSaveEntries() {
+@@ -147,8 +214,7 @@ void TA_DataSelectSection::drawSaveEntries() {
      font.setAlpha(255 * ((float)alpha / 255) * ((float)alpha / 255));
  
      for(int num = 0; num < 8; num++) {
@@ -5007,7 +5008,7 @@ index 0d65695..ee5743e 100644
          entrySprite.setPosition(entryPosition);
          entrySprite.draw();
  
-@@ -174,13 +239,20 @@ void TA_DataSelectSection::drawSaveEntries() {
+@@ -174,13 +240,20 @@ void TA_DataSelectSection::drawSaveEntries() {
      }
  }
  
@@ -5029,15 +5030,42 @@ index 0d65695..ee5743e 100644
      }
  }
  
-@@ -192,19 +264,27 @@ void TA_DataSelectSection::drawSplash() {
+@@ -192,19 +265,53 @@ void TA_DataSelectSection::drawSplash() {
      pos = std::min(pos, static_cast<int>(splashSequence.size()) - 1);
  
      splashFont.setAlpha(alpha);
-+    if(deleteMode) {
-+        splashFont.drawTextCentered(TA::screenHeight - 24, "Select a save file!", TA_Point(-1, 0));
-+        return;
+-    splashFont.drawTextCentered(TA::screenHeight - 24, splashSequence[pos], TA_Point(-1, 0));
++    drawSplashText(deleteMode ? "Select a save file!" : splashSequence[pos]);
++}
++
++// Draws centered text near the bottom of the screen. Lines break at '\n', and lines that would not fit the screen
++// are wrapped at spaces. The font is monospaced, so the wrapping stays the same while the letters are scrambled.
++void TA_DataSelectSection::drawSplashText(const std::string& text) {
++    const int maxChars = std::max(8, static_cast<int>((TA::screenWidth - 8) / 6));
++
++    std::vector<std::string> lines;
++    std::stringstream paragraphs(text);
++    std::string paragraph;
++    while(std::getline(paragraphs, paragraph, '\n')) {
++        std::string line;
++        std::stringstream words(paragraph);
++        std::string word;
++        // keep runs of spaces out of the way: words are separated by single spaces when wrapping
++        while(words >> word) {
++            if(!line.empty() && static_cast<int>(line.size() + 1 + word.size()) > maxChars) {
++                lines.push_back(line);
++                line = word;
++            } else {
++                line = line.empty() ? word : line + " " + word;
++            }
++        }
++        lines.push_back(line);
 +    }
-     splashFont.drawTextCentered(TA::screenHeight - 24, splashSequence[pos], TA_Point(-1, 0));
++
++    float top = TA::screenHeight - 20 - (9 * static_cast<int>(lines.size())) / 2;
++    for(size_t i = 0; i < lines.size(); i++) {
++        splashFont.drawTextCentered(top + 9 * i, lines[i], TA_Point(-1, 0));
++    }
  }
  
  void TA_DataSelectSection::drawSelector() {
@@ -5062,7 +5090,7 @@ index 0d65695..ee5743e 100644
              if(buttons[pos].isPressed()) {
                  selectorPosition = pos;
              }
-@@ -216,7 +296,12 @@ void TA_DataSelectSection::drawSelector() {
+@@ -216,7 +323,12 @@ void TA_DataSelectSection::drawSelector() {
          return;
      }
  
@@ -5076,7 +5104,7 @@ index 0d65695..ee5743e 100644
          selectorRedSprite.setFrame(0);
          selectorWhiteSprite.setFrame(1);
      } else {
-@@ -224,13 +309,33 @@ void TA_DataSelectSection::drawSelector() {
+@@ -224,13 +336,33 @@ void TA_DataSelectSection::drawSelector() {
          selectorWhiteSprite.setFrame(3);
      }
  
@@ -5112,8 +5140,64 @@ index 0d65695..ee5743e 100644
  int TA_DataSelectSection::getSavePercent(int save) {
      if(!TA::save::saveExists(save) || save == createdSave) {
          return 0;
+@@ -288,7 +420,7 @@ std::vector<std::string> TA_DataSelectSection::generateSplashSequence() {
+ 
+         sequence[i] = splash;
+         for(int j = 0; j < splash.size(); j++) {
+-            if(splash[j] != ' ' && !stable.contains(j)) {
++            if(splash[j] != ' ' && splash[j] != '\n' && !stable.contains(j)) {
+                 if(TA::random::next() % 5 != 0) {
+                     sequence[i][j] = static_cast<char>('a' + (TA::random::next() % 26));
+                 } else {
+@@ -323,6 +455,46 @@ std::string TA_DataSelectSection::generateSplash() {
+         "Fun is infinite",
+         "The cake is a lie",
+         "Every copy is personalized",
++        "Sonic was never good.",
++        "Play Sonic Mania!! I am Kerokomi!!!",
++        "Rated 6.5 by IGN!",
++        "Sonic had a rough transition to 3D.",
++        "Made before GTA 6.",
++        "While they're out partying btw.",
++        "Ahhhhh almost almost.",
++        "Oh I broke the goddamn wheel!",
++        "Used to be a green forest...",
++        "Bomb yourself a bridge!",
++        "Don't go Tails' House to swap items!",
++        "Why attack when you can climb?",
++        "Radio is useless. Change my mind.",
++        "I love the taste of bombs.",
++        "How many bombs can a fox have?",
++        "Mechakotik, you're our hero.",
++        "Does this work on real hardware?",
++        "Hue hue hue hue hue hue",
++        "I am Sneakers O'Toole!",
++        "Blue streak, speeds by...",
++        "Pepsimaaaaan!",
++        "First of all, I am Vegeta",
++        "UwU",
++        "Jarvis, clip this shit.",
++        "He sacrifices the roooooook!",
++        "I definetly miss the quiet...",
++        "Ask me anything!",
++        "What's the capital of France?",
++        "AltF4 for 100% save file!",
++        "Sonic Labyrinth iOS when?",
++        "This happened before Sonic 1 y'know...",
++        "Ian Flynn's knowing smiles",
++        "Best shot on a massive drop - Musor Drop.",
++        "Hell answers to me, for I am...Napalm Bomb.",
++        "What are the rules dammit?!",
++        "Works with any controller!",
++        "Charmy Bee is the BEEST character.",
++        "I wanna fly high!",
++        "Unlike Tails I don't chuckle.",
++        "Yes Eggman we see the fit ._.",
+     };
+ 
+     return splashes[TA::random::next() % static_cast<int>(splashes.size())];
 diff --git a/src/ui/data_select_section.h b/src/ui/data_select_section.h
-index 1b4e7be..fcde2ab 100644
+index 1b4e7be..53bc1dd 100644
 --- a/src/ui/data_select_section.h
 +++ b/src/ui/data_select_section.h
 @@ -4,6 +4,7 @@
@@ -5156,11 +5240,12 @@ index 1b4e7be..fcde2ab 100644
      void updateScroll();
      void updateSelection();
      bool updateTouchscreenSelection();
-@@ -32,11 +51,15 @@ private:
+@@ -32,11 +51,16 @@ private:
      void drawModCount();
      void drawSplash();
      void drawSelector();
 +    void drawTrashButton();
++    void drawSplashText(const std::string& text);
 +    void setDeleteMode(bool enabled);
 +    void updateTrashButton();
 +    void drawAchievementsSelector(int redAlpha, int whiteAlpha);
@@ -5173,7 +5258,7 @@ index 1b4e7be..fcde2ab 100644
      TA_Sound switchSound, selectSound, loadSaveSound;
      TA_Font font, splashFont;
      float timer = 0, selectorTimer = 0;
-@@ -44,9 +67,13 @@ private:
+@@ -44,9 +68,13 @@ private:
      std::vector<std::string> splashSequence;
      float splashTimer = 0;
  
