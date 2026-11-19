@@ -784,6 +784,20 @@ zRC{$`&Cac#@~hczhogmjYNymF*{St&8n-6&uZ+!q;A$DfM!udfF0p>Q+aQMt`4OTw
 zoXC`hSQ7eI#I8a<7OI$UoR4xKz_r)vt66zW$Ww(rCZtDW7a_lwP;CXbe#(z3^f4hl
 n8jp}~z?Fvh2>AwFY197!?@sF5Vt_p000000NkvXXu0mjf(Ld_L
 
+diff --git a/assets/data_select/trash.png b/assets/data_select/trash.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..7fbef5ebf35b5436fcdf808272ff6245ee322fe7
+GIT binary patch
+literal 200
+zcmV;(05|`MP)<h;3K|Lk000e1NJLTq001BW000mO1^@s6cL04^0001wNkl<Zc-muR
+zU|{&qFo1xCfq{YH|2y*Bz$nDXz`(%3a81L4Ed5$HPB1Vr3@~89C84Zrg2KOh_Y6q}
+zYaTm}!oO~1N!S7Cmg17b<rs8JamgV&hKW>P;!}gmm-y5$5n~al!H;ecK8Fo>A{=$V
+z;B^3Uw!@b_iOF{OvL_2E*^JcGKbi)Js?Y|yItBnpL@mXuvMiDS0000<MNUMnLSTYK
+CGf=Pq
+
+literal 0
+HcmV?d00001
+
 diff --git a/assets/default_config b/assets/default_config
 index 2ccb649..967a236 100644
 --- a/assets/default_config
@@ -3940,7 +3954,7 @@ index 87d3c19..ca4ad40 100644
      std::filesystem::path modsPath = "~/.local/share/tails-adventure/mods";
  #else
 diff --git a/src/engine/save.cpp b/src/engine/save.cpp
-index 9be420f..ad7a5b0 100644
+index 9be420f..1111863 100644
 --- a/src/engine/save.cpp
 +++ b/src/engine/save.cpp
 @@ -4,6 +4,7 @@
@@ -3971,8 +3985,27 @@ index 9be420f..ad7a5b0 100644
  void TA::save::setParameter(std::string name, long long value) {
      saveMap[name] = value;
  }
+@@ -135,6 +142,18 @@ void TA::save::repairSave(std::string saveName) {
+     saveMap = newSaveMap;
+ }
+ 
++void TA::save::deleteSave(int save) {
++    std::string prefix = "save_" + std::to_string(save) + "/";
++    for(auto it = saveMap.begin(); it != saveMap.end();) {
++        if(it->first.starts_with(prefix)) {
++            it = saveMap.erase(it);
++        } else {
++            ++it;
++        }
++    }
++    writeToFile();
++}
++
+ bool TA::save::saveExists(int save) {
+     std::string saveName = "save_" + std::to_string(save);
+     return saveMap.count(saveName + "/item_mask");
 diff --git a/src/engine/save.h b/src/engine/save.h
-index f1c899d..234630f 100644
+index f1c899d..3f9b7cf 100644
 --- a/src/engine/save.h
 +++ b/src/engine/save.h
 @@ -8,6 +8,7 @@ namespace TA {
@@ -3983,6 +4016,14 @@ index f1c899d..234630f 100644
          void setParameter(std::string name, long long value);
          void setCurrentSave(std::string name);
          long long getSaveParameter(std::string name, std::string saveName = "");
+@@ -15,6 +16,7 @@ namespace TA {
+         void createSave(std::string saveName);
+         void repairSave(std::string saveName);
+         bool saveExists(int save);
++        void deleteSave(int save);
+     }
+ }
+ 
 diff --git a/src/engine/sprite.cpp b/src/engine/sprite.cpp
 index 5c2cfa9..a30f7d8 100644
 --- a/src/engine/sprite.cpp
@@ -4763,7 +4804,7 @@ index 85bbc0b..c9a090f 100644
  #include "screen.h"
  #include "sound.h"
 diff --git a/src/ui/data_select_section.cpp b/src/ui/data_select_section.cpp
-index 0d65695..f4da9db 100644
+index 0d65695..ee5743e 100644
 --- a/src/ui/data_select_section.cpp
 +++ b/src/ui/data_select_section.cpp
 @@ -1,6 +1,7 @@
@@ -4774,15 +4815,17 @@ index 0d65695..f4da9db 100644
  #include "resource_manager.h"
  #include "save.h"
  #include "tools.h"
-@@ -12,6 +13,7 @@ void TA_DataSelectSection::load() {
+@@ -11,7 +12,9 @@ void TA_DataSelectSection::load() {
+     selectorWhiteSprite.load("data_select/selector.png", 48, 72);
      previewSprite.load("data_select/preview.png", 46, 46);
      previewSeafoxSprite.load("data_select/preview_seafox.png", 46, 46);
++    trashSprite.load("data_select/trash.png", 16, 16);
      optionsSprite.load("data_select/options.png");
 +    achievementsSprite.load("data_select/achievements.png");
  
      font.loadFont("fonts/pause_menu.toml");
      splashFont.loadFont("fonts/splash.toml");
-@@ -20,9 +22,9 @@ void TA_DataSelectSection::load() {
+@@ -20,9 +23,9 @@ void TA_DataSelectSection::load() {
      selectSound.load("sound/select_item.ogg", TA_SOUND_CHANNEL_SFX1);
      loadSaveSound.load("sound/load_save.ogg", TA_SOUND_CHANNEL_SFX1);
  
@@ -4795,7 +4838,67 @@ index 0d65695..f4da9db 100644
          buttons[pos].setRectangle(topLeft, bottomRight);
      }
  
-@@ -59,11 +61,16 @@ TA_MainMenuState TA_DataSelectSection::processSelection() {
+@@ -38,6 +41,8 @@ TA_MainMenuState TA_DataSelectSection::update() {
+         return TA_MAIN_MENU_DATA_SELECT;
+     }
+ 
++    updateTrashButton();
++
+     if(controller->isTouchscreen()) {
+         updateScroll();
+         if(updateTouchscreenSelection()) {
+@@ -45,6 +50,9 @@ TA_MainMenuState TA_DataSelectSection::update() {
+         }
+     } else {
+         updateSelection();
++        if(deleteMode && controller->isJustPressed(TA_BUTTON_B)) {
++            setDeleteMode(false);
++        }
+         if(controller->isJustPressed(TA_BUTTON_A) || controller->isJustPressed(TA_BUTTON_PAUSE)) {
+             return processSelection();
+         }
+@@ -53,17 +61,57 @@ TA_MainMenuState TA_DataSelectSection::update() {
+     return TA_MAIN_MENU_DATA_SELECT;
+ }
+ 
++void TA_DataSelectSection::updateTrashButton() {
++    float x = static_cast<float>(TA::screenWidth) - trashSize - trashMargin;
++    trashButton.setRectangle({x - 4, trashTop - 4}, {x + trashSize + 4, trashTop + trashSize + 4});
++    trashButton.update();
++    if(trashButton.isReleased()) {
++        setDeleteMode(!deleteMode);
++        switchSound.play();
++    }
++}
++
++void TA_DataSelectSection::setDeleteMode(bool enabled) {
++    if(deleteMode && !enabled) {
++        // back to a fresh randomized text
++        splashSequence = generateSplashSequence();
++        splashTimer = 0;
++    }
++    deleteMode = enabled;
++}
++
++void TA_DataSelectSection::reset() {
++    setDeleteMode(false);
++}
++
+ TA_MainMenuState TA_DataSelectSection::processSelection() {
++    if(deleteMode) {
++        if(selection >= 2) {
++            TA::save::deleteSave(selection - 2);
++            if(createdSave == selection - 2) {
++                createdSave = -1;
++            }
++            selectSound.play();
++            setDeleteMode(false);
++        }
++        return TA_MAIN_MENU_DATA_SELECT;
++    }
++
+     if(selection == 0) {
+         selectSound.play();
          return TA_MAIN_MENU_OPTIONS;
      }
  
@@ -4816,7 +4919,7 @@ index 0d65695..f4da9db 100644
      loadSaveSound.play();
      locked = true;
      return TA_MAIN_MENU_DATA_SELECT;
-@@ -82,14 +89,14 @@ void TA_DataSelectSection::updateScroll() {
+@@ -82,14 +130,14 @@ void TA_DataSelectSection::updateScroll() {
  
      position += scrollVelocity;
      position = std::max(position, float(0));
@@ -4834,7 +4937,7 @@ index 0d65695..f4da9db 100644
  
      if(!TA::equal(position, need)) {
          if(position > need) {
-@@ -99,19 +106,29 @@ void TA_DataSelectSection::updateSelection() {
+@@ -99,19 +147,32 @@ void TA_DataSelectSection::updateSelection() {
              position = std::min(need, position + scrollSpeed * TA::elapsedTime);
          }
      } else if(controller->isJustChangedDirection()) {
@@ -4859,6 +4962,9 @@ index 0d65695..f4da9db 100644
 +        } else if(direction == TA_DIRECTION_UP && selection == 1) {
 +            selection = 0;
 +            switchSound.play();
++        } else if(direction == TA_DIRECTION_UP && selection >= 2) {
++            setDeleteMode(!deleteMode);
++            switchSound.play();
          }
      }
  }
@@ -4869,7 +4975,15 @@ index 0d65695..f4da9db 100644
          buttons[pos].setPosition({-position, 0});
          buttons[pos].update();
  
-@@ -136,8 +153,12 @@ void TA_DataSelectSection::draw() {
+@@ -129,6 +190,7 @@ bool TA_DataSelectSection::updateTouchscreenSelection() {
+ void TA_DataSelectSection::draw() {
+     drawCustomEntries();
+     drawSaveEntries();
++    drawTrashButton();
+     drawModCount();
+     drawSplash();
+     drawSelector();
+@@ -136,8 +198,12 @@ void TA_DataSelectSection::draw() {
  
  void TA_DataSelectSection::drawCustomEntries() {
      optionsSprite.setAlpha(alpha);
@@ -4883,7 +4997,7 @@ index 0d65695..f4da9db 100644
  }
  
  void TA_DataSelectSection::drawSaveEntries() {
-@@ -147,8 +168,7 @@ void TA_DataSelectSection::drawSaveEntries() {
+@@ -147,8 +213,7 @@ void TA_DataSelectSection::drawSaveEntries() {
      font.setAlpha(255 * ((float)alpha / 255) * ((float)alpha / 255));
  
      for(int num = 0; num < 8; num++) {
@@ -4893,7 +5007,38 @@ index 0d65695..f4da9db 100644
          entrySprite.setPosition(entryPosition);
          entrySprite.draw();
  
-@@ -197,14 +217,18 @@ void TA_DataSelectSection::drawSplash() {
+@@ -174,13 +239,20 @@ void TA_DataSelectSection::drawSaveEntries() {
+     }
+ }
+ 
++void TA_DataSelectSection::drawTrashButton() {
++    trashSprite.setAlpha(alpha);
++    trashSprite.setFrame(deleteMode ? 1 : 0);
++    trashSprite.setPosition(static_cast<float>(TA::screenWidth) - trashSize - trashMargin, trashTop);
++    trashSprite.draw();
++}
++
+ void TA_DataSelectSection::drawModCount() {
+     int total = TA::resmgr::getTotalMods();
+     int loaded = TA::resmgr::getLoadedMods();
+     if(total >= 1) {
+         std::string text = "M " + std::to_string(loaded) + "/" + std::to_string(total);
+         font.setAlpha(alpha);
+-        font.drawText(TA_Point(TA::screenWidth - font.getTextWidth(text) - 8, 9), text);
++        font.drawText(TA_Point(TA::screenWidth - font.getTextWidth(text) - trashSize - trashMargin * 2, 9), text);
+     }
+ }
+ 
+@@ -192,19 +264,27 @@ void TA_DataSelectSection::drawSplash() {
+     pos = std::min(pos, static_cast<int>(splashSequence.size()) - 1);
+ 
+     splashFont.setAlpha(alpha);
++    if(deleteMode) {
++        splashFont.drawTextCentered(TA::screenHeight - 24, "Select a save file!", TA_Point(-1, 0));
++        return;
++    }
+     splashFont.drawTextCentered(TA::screenHeight - 24, splashSequence[pos], TA_Point(-1, 0));
+ }
  
  void TA_DataSelectSection::drawSelector() {
      selectorTimer += TA::elapsedTime;
@@ -4917,7 +5062,7 @@ index 0d65695..f4da9db 100644
              if(buttons[pos].isPressed()) {
                  selectorPosition = pos;
              }
-@@ -216,7 +240,12 @@ void TA_DataSelectSection::drawSelector() {
+@@ -216,7 +296,12 @@ void TA_DataSelectSection::drawSelector() {
          return;
      }
  
@@ -4931,7 +5076,7 @@ index 0d65695..f4da9db 100644
          selectorRedSprite.setFrame(0);
          selectorWhiteSprite.setFrame(1);
      } else {
-@@ -224,13 +253,33 @@ void TA_DataSelectSection::drawSelector() {
+@@ -224,13 +309,33 @@ void TA_DataSelectSection::drawSelector() {
          selectorWhiteSprite.setFrame(3);
      }
  
@@ -4968,7 +5113,7 @@ index 0d65695..f4da9db 100644
      if(!TA::save::saveExists(save) || save == createdSave) {
          return 0;
 diff --git a/src/ui/data_select_section.h b/src/ui/data_select_section.h
-index 1b4e7be..031304b 100644
+index 1b4e7be..fcde2ab 100644
 --- a/src/ui/data_select_section.h
 +++ b/src/ui/data_select_section.h
 @@ -4,6 +4,7 @@
@@ -4979,7 +5124,15 @@ index 1b4e7be..031304b 100644
  
  class TA_DataSelectSection : public TA_MainMenuSection {
  public:
-@@ -21,6 +22,23 @@ private:
+@@ -12,6 +13,7 @@ public:
+     TA_MainMenuState update() override;
+     void setAlpha(int alpha) override { this->alpha = alpha; }
+     void draw() override;
++    void reset() override;
+ 
+ private:
+     const float menuStart = 16;
+@@ -21,6 +23,23 @@ private:
      const float loadTime = 60;
      const float scrollSlowdown = 0.125;
  
@@ -5003,21 +5156,24 @@ index 1b4e7be..031304b 100644
      void updateScroll();
      void updateSelection();
      bool updateTouchscreenSelection();
-@@ -32,11 +50,12 @@ private:
+@@ -32,11 +51,15 @@ private:
      void drawModCount();
      void drawSplash();
      void drawSelector();
++    void drawTrashButton();
++    void setDeleteMode(bool enabled);
++    void updateTrashButton();
 +    void drawAchievementsSelector(int redAlpha, int whiteAlpha);
  
      std::vector<std::string> generateSplashSequence();
      std::string generateSplash();
  
 -    TA_Sprite entrySprite, selectorRedSprite, selectorWhiteSprite, previewSprite, previewSeafoxSprite, optionsSprite;
-+    TA_Sprite entrySprite, selectorRedSprite, selectorWhiteSprite, previewSprite, previewSeafoxSprite, optionsSprite, achievementsSprite;
++    TA_Sprite trashSprite, entrySprite, selectorRedSprite, selectorWhiteSprite, previewSprite, previewSeafoxSprite, optionsSprite, achievementsSprite;
      TA_Sound switchSound, selectSound, loadSaveSound;
      TA_Font font, splashFont;
      float timer = 0, selectorTimer = 0;
-@@ -44,9 +63,10 @@ private:
+@@ -44,9 +67,13 @@ private:
      std::vector<std::string> splashSequence;
      float splashTimer = 0;
  
@@ -5026,6 +5182,9 @@ index 1b4e7be..031304b 100644
      float position = 0, scrollVelocity = 0;
 -    int selection = 1, createdSave = -1, alpha = 255;
 +    int selection = 2, createdSave = -1, alpha = 255;
++    TA_OnscreenButton trashButton;
++    bool deleteMode = false;
++    static constexpr float trashSize = 16, trashMargin = 8, trashTop = 6;
 +    int lastColumnSelection = 0;
      bool locked = false;
  };
