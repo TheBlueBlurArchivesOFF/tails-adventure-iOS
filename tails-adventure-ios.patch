@@ -4804,7 +4804,7 @@ index 85bbc0b..c9a090f 100644
  #include "screen.h"
  #include "sound.h"
 diff --git a/src/ui/data_select_section.cpp b/src/ui/data_select_section.cpp
-index 0d65695..80c3c11 100644
+index 0d65695..a103180 100644
 --- a/src/ui/data_select_section.cpp
 +++ b/src/ui/data_select_section.cpp
 @@ -1,6 +1,8 @@
@@ -5149,7 +5149,7 @@ index 0d65695..80c3c11 100644
                  if(TA::random::next() % 5 != 0) {
                      sequence[i][j] = static_cast<char>('a' + (TA::random::next() % 26));
                  } else {
-@@ -323,6 +455,46 @@ std::string TA_DataSelectSection::generateSplash() {
+@@ -323,6 +455,55 @@ std::string TA_DataSelectSection::generateSplash() {
          "Fun is infinite",
          "The cake is a lie",
          "Every copy is personalized",
@@ -5163,7 +5163,7 @@ index 0d65695..80c3c11 100644
 +        "Oh I broke the goddamn wheel!",
 +        "Used to be a green forest...",
 +        "Bomb yourself a bridge!",
-+        "Don't go Tails' House to swap items!",
++        "Don't go to Tails' House for item swapping!",
 +        "Why attack when you can climb?",
 +        "Radio is useless. Change my mind.",
 +        "I love the taste of bombs.",
@@ -5193,6 +5193,15 @@ index 0d65695..80c3c11 100644
 +        "I wanna fly high!",
 +        "Unlike Tails I don't chuckle.",
 +        "Yes Eggman we see the fit ._.",
++        "WE ARE NINTENDO. YOU CANNOT BEAT US.",
++        "Tails Adventure DX Director's Cut Ultimate Plus....& Knuckles.",
++        "The world is mine!",
++        "How bad-bad-bad-bad can I be?",
++        "I'm hanging on to the other siiiiideee",
++        "Hi. My neck hirts.",
++        "This is like those Minecraft splash texts, you know?",
++        "TEN FEET TWENTY THE FLOWER MAN",
++        "Look for the Gummy Bear album in stores on November 13, with lots of music, videos, and extras.",
      };
  
      return splashes[TA::random::next() % static_cast<int>(splashes.size())];
